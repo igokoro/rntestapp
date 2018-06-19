@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { createStackNavigator } from "react-navigation";
 import {
   Platform,
   StyleSheet,
@@ -8,7 +9,23 @@ import {
   Button
 } from "react-native";
 
+const RootStack = createStackNavigator(
+  {
+    Home: Login,
+    Orders: OrdersList
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
+
 export default class App extends Component {
+  render() {
+    return <RootStack />;
+  }
+}
+
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +48,20 @@ export default class App extends Component {
           onChangeText={storePass => this.setState({ storePass })}
           value={this.state.storePass}
         />
-        <Button onPress={null} title="Log In" />
+        <Button
+          onPress={() => this.props.navigation.navigate('Orders')}
+          title="Log In"
+        />
+      </View>
+    );
+  }
+}
+
+class OrdersList extends Component {
+  render() {
+    return (
+      <View>
+        <Text>Hi</Text>
       </View>
     );
   }
