@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, TextInput, View, Button } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button
+} from "react-native";
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       storeID: "Enter Your Store ID",
       storePass: "Enter Your Password"
-    }
+    };
   }
   render() {
     return (
@@ -24,10 +31,7 @@ export default class App extends Component {
           onChangeText={storePass => this.setState({ storePass })}
           value={this.state.storePass}
         />
-        <Button
-          onPress={null}
-          title='Log In'
-          ></Button>
+        <Button onPress={null} title="Log In" />
       </View>
     );
   }
@@ -36,11 +40,11 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   input: {
-    width: 200,
+    width: 200
   },
   text: {
     margin: 13,
