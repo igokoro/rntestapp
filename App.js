@@ -76,10 +76,10 @@ class Order extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Order Information</Text>
-        <View style={styles.confirmationBtn}>
-          <Button onPress={null} title="Delivered" />
-          <Button onPress={null} title="Attempted" />
+        <Text style={styles.headerText}>Order Information</Text>
+        <View style={styles.confirmationBtnView}>
+          <Button style={styles.btn} onPress={null} title="Delivered" />
+          <Button style={styles.btn} onPress={null} title="Attempted" />
         </View>
       </View>
     );
@@ -93,7 +93,7 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "OrdersList"
+    initialRouteName: "Order"
   }
 );
 
@@ -101,7 +101,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: 'black',
   },
   ordersList: {
     flex: 1,
@@ -123,11 +126,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18
   },
-  confirmationBtn: {
+  confirmationBtnView: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center"
     marginTop: 40,
-    maxHeight: 40
+  },
+  btn: {
+    width: 200
   }
 });
