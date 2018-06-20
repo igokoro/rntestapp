@@ -25,6 +25,7 @@ class Login extends Component {
       storePass: "Enter Your Password"
     };
   }
+  
   render() {
     return (
       <View style={styles.container}>
