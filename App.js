@@ -52,20 +52,21 @@ class OrdersList extends Component {
   render() {
     const orders = mockData.map(order => {
       return (
-        <View key={order.id}>
           <Text
+            key={order.id}
             onPress={() => this.props.navigation.navigate("Order")}
             style={{ fontSize: 26 }}
           >
             {order.address}
           </Text>
-        </View>
       );
     });
     return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 20 }}>Your Shops Orders</Text>
-        {orders}
+      <View>
+        <View style={styles.headerView}>
+          <Text style={styles.headerText}>Your Shops Orders</Text>
+        </View>
+        <View style={styles.ordersList}>{orders}</View>
       </View>
     );
   }
@@ -92,7 +93,7 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "OrdersList"
   }
 );
 
@@ -102,18 +103,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  ordersList: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20
+  },
   input: {
     width: 200
   },
+  headerView: {
+    alignItems: "center"
+  },
+  headerText: {
+    fontSize: 22
+  },
   text: {
-    margin: 13,
+    marginTop: 10,
     fontSize: 18
   },
   confirmationBtn: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    margin: 10,
+    marginTop: 40,
     maxHeight: 40
   }
 });
