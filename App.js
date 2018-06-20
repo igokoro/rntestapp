@@ -6,7 +6,9 @@ import {
   Text,
   TextInput,
   View,
-  Button
+  Button,
+  TouchableOpacity,
+  FlatList
 } from "react-native";
 
 export default class App extends Component {
@@ -38,10 +40,12 @@ class Login extends Component {
           onChangeText={storePass => this.setState({ storePass })}
           value={this.state.storePass}
         />
-        <Button
+        <TouchableOpacity
           onPress={() => this.props.navigation.navigate("OrdersList")}
-          title="Log In"
-        />
+          style={styles.btn}
+        >
+          <Text style={styles.text}>Log In</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -50,23 +54,21 @@ const mockData = require("./mock.json");
 
 class OrdersList extends Component {
   render() {
-    const orders = mockData.map(order => {
-      return (
-          <Text
-            key={order.id}
-            onPress={() => this.props.navigation.navigate("Order")}
-            style={{ fontSize: 26 }}
-          >
-            {order.address}
-          </Text>
-      );
-    });
     return (
       <View>
+
         <View style={styles.headerView}>
           <Text style={styles.headerText}>Your Shops Orders</Text>
         </View>
-        <View style={styles.ordersList}>{orders}</View>
+
+        <View style={styles.ordersList}>
+          <FlatList
+            onPress={() => this.props.navigation.navgiate("Order")}
+            data={mockData}
+            renderItem={({ item }) => <Text>{item.address}</Text>}
+          />
+
+        </View>
       </View>
     );
   }
@@ -93,7 +95,7 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "Order"
+    initialRouteName: "Login"
   }
 );
 
@@ -104,17 +106,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: 'black',
+    borderColor: "black"
   },
   ordersList: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 20
+    alignItems: "center"
   },
   input: {
-    width: 200
+    width: 210
   },
   headerView: {
     alignItems: "center"
@@ -123,17 +121,20 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   text: {
-    marginTop: 10,
-    fontSize: 18
+    marginTop: 12,
+    fontSize: 18,
+    fontFamily: "Roboto"
   },
   confirmationBtnView: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
-    marginTop: 40,
+    alignItems: "center",
+    marginTop: 40
   },
   btn: {
-    width: 200
+    paddingHorizontal: 80,
+    height: 50,
+    backgroundColor: "rgb(146, 201, 219)"
   }
 });
