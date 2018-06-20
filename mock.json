@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "first": "John",
+    "last": "Roberts",
+    "address": "Chicago, IL",
+  },
+  {
+    "id": 2,
+    "first": "Frita",
+    "last": "Waters",
+    "address": "Phoenix, AZ",
+  },
+  {
+    "id": 3,
+    "first": "Bart",
+    "last": "Simpson",
+    "address": "Springfield, IL",
+  }
+]

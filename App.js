@@ -9,16 +9,6 @@ import {
   Button
 } from "react-native";
 
-const RootStack = createStackNavigator(
-  {
-    Home: Login,
-    Orders: OrdersList
-  },
-  {
-    initialRouteName: "Home"
-  }
-);
-
 export default class App extends Component {
   render() {
     return <RootStack />;
@@ -49,23 +39,62 @@ class Login extends Component {
           value={this.state.storePass}
         />
         <Button
-          onPress={() => this.props.navigation.navigate('Orders')}
+          onPress={() => this.props.navigation.navigate("OrdersList")}
           title="Log In"
         />
       </View>
     );
   }
 }
+const mockData = require("./mock.json");
 
 class OrdersList extends Component {
   render() {
+    const orders = mockData.map(order => {
+      return (
+        <View key={order.id}>
+          <Text
+            onPress={() => this.props.navigation.navigate("Order")}
+            style={{ fontSize: 26 }}
+          >
+            {order.address}
+          </Text>
+        </View>
+      );
+    });
     return (
-      <View>
-        <Text>Hi</Text>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 20 }}>Your Shops Orders</Text>
+        {orders}
       </View>
     );
   }
 }
+
+class Order extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Order Information</Text>
+        <View style={styles.confirmationBtn}>
+          <Button onPress={null} title="Delivered" />
+          <Button onPress={null} title="Attempted" />
+        </View>
+      </View>
+    );
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Login,
+    OrdersList,
+    Order
+  },
+  {
+    initialRouteName: "Login"
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,5 +108,12 @@ const styles = StyleSheet.create({
   text: {
     margin: 13,
     fontSize: 18
+  },
+  confirmationBtn: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 10,
+    maxHeight: 40
   }
 });
