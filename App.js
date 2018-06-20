@@ -53,22 +53,45 @@ class Login extends Component {
 const mockData = require("./mock.json");
 
 class OrdersList extends Component {
+  _renderItem = ({ item }) => {
+    return (
+      <OrderItem address={item.address} navigation={this.props.navigation} />
+    );
+  };
+
   render() {
     return (
       <View>
-
         <View style={styles.headerView}>
           <Text style={styles.headerText}>Your Shops Orders</Text>
         </View>
 
         <View style={styles.ordersList}>
           <FlatList
-            // onPress={() => this.props.navigation.navgiate("Order")}
             data={mockData}
-            renderItem={({ item }) => <Text>{item.address}</Text>}
+            renderItem={this._renderItem}
+            keyExtractor={(item, index) => index.toString()}
           />
-
         </View>
+      </View>
+    );
+  }
+}
+
+class OrderItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    console.log(this.props);
+    return (
+      <View>
+        <Text
+          onPress={() => this.props.navigation.push("Order")}
+          style={styles.text}
+          >
+          {this.props.address}
+        </Text>
       </View>
     );
   }
@@ -95,7 +118,7 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "OrdersList"
+    initialRouteName: "Login"
   }
 );
 
