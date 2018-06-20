@@ -53,49 +53,68 @@ class Login extends Component {
 const mockData = require("./mock.json");
 
 class OrdersList extends Component {
+  _renderItem = ({ item }) => {
+    <OrderItem address={item.address} />;
+  };
+
+  _keyExtractor = (item, index) => index.toString();
+
   render() {
+    console.log(mockData);
     return (
       <View>
-
         <View style={styles.headerView}>
           <Text style={styles.headerText}>Your Shops Orders</Text>
         </View>
 
-        <View style={styles.ordersList}>
-          <FlatList
-            onPress={() => this.props.navigation.navgiate("Order")}
-            data={mockData}
-            renderItem={({ item }) => <Text>{item.address}</Text>}
-          />
-
-        </View>
+        <FlatList
+          // onPress={() => this.props.navigation.navgiate("Order")}
+          data={mockData}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}
+        />
       </View>
     );
   }
 }
 
-class Order extends Component {
+class OrderItem extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    console.log(`I am props ${this.props}`);
     return (
-      <View style={styles.container}>
-        <Text style={styles.headerText}>Order Information</Text>
-        <View style={styles.confirmationBtnView}>
-          <Button style={styles.btn} onPress={null} title="Delivered" />
-          <Button style={styles.btn} onPress={null} title="Attempted" />
-        </View>
+      <View
+        style={{ height: 200, width: 200, borderColor: "red", borderWidth: 1 }}
+      >
+        <Text>{this.props.address}</Text>
       </View>
     );
   }
 }
+
+// class Order extends Component {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.headerText}>Order Information</Text>
+//         <View style={styles.confirmationBtnView}>
+//           <Button style={styles.btn} onPress={null} title="Delivered" />
+//           <Button style={styles.btn} onPress={null} title="Attempted" />
+//         </View>
+//       </View>
+//     );
+//   }
+// }
 
 const RootStack = createStackNavigator(
   {
     Login,
-    OrdersList,
-    Order
+    OrdersList
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "OrdersList"
   }
 );
 
