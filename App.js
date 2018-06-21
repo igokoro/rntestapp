@@ -25,7 +25,7 @@ class Login extends Component {
       storePass: "Enter Your Password"
     };
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -54,9 +54,10 @@ class Login extends Component {
 const mockData = require("./mock.json");
 
 class OrdersList extends Component {
+
   _renderItem = ({ item }) => {
     return (
-      <OrderItem address={item.address} navigation={this.props.navigation} />
+      <OrderItem info={item} navigation={this.props.navigation} />
     );
   };
 
@@ -69,7 +70,7 @@ class OrdersList extends Component {
 
         <View style={styles.ordersList}>
           <FlatList
-            data={mockData}
+            data={mockData.result.orders}
             renderItem={this._renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -83,15 +84,21 @@ class OrderItem extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     console.log(this.props);
     return (
-      <View>
+      <View style={[styles.borderBlack, styles.orderItemView]}>
         <Text
           onPress={() => this.props.navigation.push("Order")}
           style={styles.text}
           >
-          {this.props.address}
+          {this.props.info.address1}
+        </Text>
+        <Text
+          style={styles.text}
+          >
+          Order Number: {this.props.info.bloomlinkOrder}
         </Text>
       </View>
     );
@@ -124,16 +131,22 @@ const RootStack = createStackNavigator(
 );
 
 const styles = StyleSheet.create({
+  borderBlack: {
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: "black",
+  },
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: "black"
   },
   ordersList: {
     alignItems: "center"
+  },
+  orderItemView: {
+    flex: 1,
+    flexDirection: 'row'
   },
   input: {
     width: 210
