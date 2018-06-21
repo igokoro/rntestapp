@@ -135,7 +135,7 @@ const RootStack = createStackNavigator(
     OrdersList
   },
   {
-    initialRouteName: "OrdersList",
+    initialRouteName: "Login",
     headerMode: "none"
   }
 );
@@ -192,5 +192,17 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 18,
     fontFamily: "Roboto"
+  },
+  confirmationBtnView: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 40
+  },
+  btn: {
+    paddingHorizontal: 80,
+    height: 50,
+    backgroundColor: "rgb(146, 201, 219)"
   }
 });
