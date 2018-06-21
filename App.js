@@ -26,12 +26,17 @@ class Login extends Component {
     };
   }
 
+  _handleSubmit = () => {
+    this.props.navigation.navigate("OrdersList")
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Store ID</Text>
         <TextInput
           style={styles.input}
+          onPress={() => this.setState({storeID: ''})}
           onChangeText={storeID => this.setState({ storeID })}
           value={this.state.storeID}
         />
@@ -42,7 +47,7 @@ class Login extends Component {
           value={this.state.storePass}
         />
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("OrdersList")}
+          onPress={this._handleSubmit}
           style={styles.btn}
         >
           <Text style={styles.text}>Log In</Text>
@@ -83,7 +88,7 @@ class OrderItem extends Component {
   render() {
     console.log(this.props);
 
-    const deliverTo = this.props.info.recFirstName ? this.props.info.recFirstName : this.props.info.toAttention;
+    const deliverTo = this.props.info.recFirstName || this.props.info.toAttention;
 
     return (
       <View style={[styles.borderBlack, styles.orderCard]}>
