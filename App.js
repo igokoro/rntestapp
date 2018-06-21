@@ -82,11 +82,14 @@ class OrderItem extends Component {
 
   render() {
     console.log(this.props);
+
+    const deliverTo = this.props.info.recFirstName ? this.props.info.recFirstName : this.props.info.toAttention;
+
     return (
       <View style={[styles.borderBlack, styles.orderCard]}>
         <View>
           <View>
-            <Text style={styles.text}>{this.props.info.recFirstName}</Text>
+            <Text style={styles.text}>{deliverTo}</Text>
           </View>
 
           <View>
