@@ -89,17 +89,7 @@ class OrderItem extends Component {
     console.log(this.props);
     return (
       <View style={[styles.borderBlack, styles.orderItemView]}>
-        <Text
-          onPress={() => this.props.navigation.push("Order")}
-          style={styles.text}
-          >
-          {this.props.info.address1}
-        </Text>
-        <Text
-          style={styles.text}
-          >
-          Order Number: {this.props.info.bloomlinkOrder}
-        </Text>
+        <Text>I am here</Text>
       </View>
     );
   }
@@ -126,7 +116,7 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "OrdersList"
   }
 );
 
@@ -146,7 +136,7 @@ const styles = StyleSheet.create({
   },
   orderItemView: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   input: {
     width: 210
