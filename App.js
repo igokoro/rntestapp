@@ -3,14 +3,27 @@ import { createStackNavigator } from "react-navigation";
 import {
   Platform,
   StyleSheet,
-  Text,
   TextInput,
   View,
-  Button,
   TouchableOpacity,
   FlatList
 } from "react-native";
 
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Button,
+  Icon,
+  Card,
+  CardItem,
+  Text,
+  Body,
+  Left,
+  Right,
+  IconNB
+} from "native-base";
 export default class App extends Component {
   render() {
     return <RootStack />;
@@ -54,11 +67,8 @@ class Login extends Component {
 const mockData = require("./mock.json");
 
 class OrdersList extends Component {
-
   _renderItem = ({ item }) => {
-    return (
-      <OrderItem info={item} navigation={this.props.navigation} />
-    );
+    return <OrderItem info={item} navigation={this.props.navigation} />;
   };
 
   render() {
@@ -68,13 +78,11 @@ class OrdersList extends Component {
           <Text style={styles.headerText}>Your Shops Orders</Text>
         </View>
 
-        <View style={styles.ordersList}>
           <FlatList
             data={mockData.result.orders}
             renderItem={this._renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
-        </View>
       </View>
     );
   }
@@ -88,9 +96,31 @@ class OrderItem extends Component {
   render() {
     console.log(this.props);
     return (
-      <View style={[styles.borderBlack, styles.orderItemView]}>
-        <Text>I am here</Text>
-      </View>
+      <Container>
+        <Content padder>
+          <Card>
+            <CardItem
+              header
+              button
+              onPress={() => alert("This is Card Header")}
+            >
+              <Text>{this.props.info.recFirstName}</Text>
+            </CardItem>
+            <CardItem button onPress={() => alert("This is Card Body")}>
+              <Body>
+                <Text>{this.props.info.address1}{this.props.info.city}{this.props.info.state}</Text>
+              </Body>
+            </CardItem>
+            <CardItem
+              footer
+              button
+              onPress={() => alert("This is Card Footer")}
+            >
+              <Text>{this.props.info.bloomlinkOrder}</Text>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
     );
   }
 }
@@ -116,7 +146,8 @@ const RootStack = createStackNavigator(
     Order
   },
   {
-    initialRouteName: "OrdersList"
+    initialRouteName: "OrdersList",
+    headerMode: 'none'
   }
 );
 
@@ -124,19 +155,19 @@ const styles = StyleSheet.create({
   borderBlack: {
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: "black",
+    borderColor: "black"
   },
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   ordersList: {
     alignItems: "center"
   },
   orderItemView: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   input: {
     width: 210
