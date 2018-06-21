@@ -84,7 +84,6 @@ class OrderItem extends Component {
     console.log(this.props);
     return (
       <View style={[styles.borderBlack, styles.orderCard]}>
-
         <View>
           <View>
             <Text style={styles.text}>{this.props.info.recFirstName}</Text>
@@ -99,19 +98,32 @@ class OrderItem extends Component {
           </View>
         </View>
 
-        <View>
-          <Button
-            title='Delivered'
-            onPress={null}
-            color='green'
-          />
-          <Button
-            title='Attempted'
-            onPress={null}
-            color='red'
-          />
+        <View style={styles.buttonView}>
+          <TouchableOpacity>
+            <Text
+              style={[
+                styles.button,
+                styles.borderBlack,
+                styles.text,
+                styles.confirmBtn
+              ]}
+            >
+              Delivered
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text
+              style={[
+                styles.button,
+                styles.borderBlack,
+                styles.text,
+                styles.attemptedBtn
+              ]}
+            >
+              Attempted
+            </Text>
+          </TouchableOpacity>
         </View>
-
       </View>
     );
   }
@@ -120,7 +132,7 @@ class OrderItem extends Component {
 const RootStack = createStackNavigator(
   {
     Login,
-    OrdersList,
+    OrdersList
   },
   {
     initialRouteName: "OrdersList",
@@ -129,14 +141,21 @@ const RootStack = createStackNavigator(
 );
 
 const styles = StyleSheet.create({
-  button: {
-
+  buttonView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
-  confimBtn: {
-
+  button: {
+    textAlign: "center",
+    padding: 10,
+    margin: 10
+  },
+  confirmBtn: {
+    backgroundColor: 'rgb(57, 187, 101)'
   },
   attemptedBtn: {
-
+    backgroundColor: 'rgb(175, 29, 29)'
   },
   borderBlack: {
     borderRadius: 4,
