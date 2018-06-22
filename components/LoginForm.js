@@ -21,7 +21,6 @@ export default class LoginForm extends Component {
         <Text style={styles.text}>Store ID</Text>
         <TextInput
           style={styles.input}
-          onPress={() => this.setState({storeID: ''})}
           onChangeText={storeID => this.setState({ storeID })}
           value={this.state.storeID}
         />

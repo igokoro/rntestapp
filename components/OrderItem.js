@@ -8,7 +8,6 @@ export default class OrderItem extends Component {
   }
 
   render() {
-    console.log(this.props);
 
     const deliverTo = this.props.info.recFirstName || this.props.info.toAttention;
 
