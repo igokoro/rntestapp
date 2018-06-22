@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import styles from '../styles/styles';
+import React, { Component } from "react";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+import styles from "../styles/styles";
+
+const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -12,10 +15,12 @@ export default class LoginForm extends Component {
   }
 
   _handleSubmit = () => {
-    this.props.navigation.navigate("OrdersList")
-  }
+    this.props.navigation.navigate("OrdersList");
+  };
 
   render() {
+    tracker.trackEvent("_handleSubmit", "_handleSubmit");
+    
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Store ID</Text>
@@ -31,10 +36,7 @@ export default class LoginForm extends Component {
           value={this.state.storePass}
         />
         {/* Submit button */}
-        <TouchableOpacity
-          onPress={this._handleSubmit}
-          style={styles.btn}
-        >
+        <TouchableOpacity onPress={this._handleSubmit} style={styles.btn}>
           <Text style={styles.text}>Log In</Text>
         </TouchableOpacity>
       </View>
