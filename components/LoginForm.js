@@ -30,6 +30,7 @@ export default class LoginForm extends Component {
           onChangeText={storePass => this.setState({ storePass })}
           value={this.state.storePass}
         />
+        {/* Submit button */}
         <TouchableOpacity
           onPress={this._handleSubmit}
           style={styles.btn}

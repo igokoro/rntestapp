@@ -6,6 +6,7 @@ import styles from '../styles/styles';
 const mockData = require('../mock.json')
 
 export default class OrdersList extends Component {
+  // item is recognized by FlatList from data, also need to pass navigation
   _renderItem = ({ item }) => {
     return <OrderItem info={item} navigation={this.props.navigation} />;
   };

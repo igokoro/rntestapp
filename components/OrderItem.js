@@ -8,11 +8,13 @@ export default class OrderItem extends Component {
   }
 
   render() {
-
+    // if no first name, check toAttention
     const deliverTo = this.props.info.recFirstName || this.props.info.toAttention;
 
     return (
+      // Card Wrapper
       <View style={[styles.borderBlack, styles.orderCard]}>
+        {/* Order Information */}
         <View>
           <View>
             <Text style={styles.text}>{deliverTo}</Text>
@@ -28,6 +30,7 @@ export default class OrderItem extends Component {
         </View>
 
         <View style={styles.buttonView}>
+          {/* Confirm button */}
           <TouchableOpacity>
             <Text
               style={[
@@ -40,6 +43,7 @@ export default class OrderItem extends Component {
               Delivered
             </Text>
           </TouchableOpacity>
+          {/* Attemped Btn */}
           <TouchableOpacity>
             <Text
               style={[

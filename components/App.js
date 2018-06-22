@@ -17,6 +17,7 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: "LoginForm",
+    // removes white space at top of device
     headerMode: "none"
   }
 );
