@@ -9,8 +9,8 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      storeID: "Enter Your Store ID",
-      storePass: "Enter Your Password"
+      storeID: "A22",
+      storePass: "test"
     };
   }
 
@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
 
   render() {
     tracker.trackEvent("_handleSubmit", "_handleSubmit");
-    
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Store ID</Text>
