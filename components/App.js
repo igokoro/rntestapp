@@ -45,9 +45,8 @@ class App extends Component {
             const currentScreen = getCurrentRouteName(currentState);
             const prevScreen = getCurrentRouteName(prevState);
 
+            // determine if screen changed 
             if (prevScreen !== currentScreen) {
-              // the line below uses the Google Analytics tracker
-              // change the tracker here to use other Mobile analytics SDK.
               tracker.trackScreenView(currentScreen);
             }
           }}
