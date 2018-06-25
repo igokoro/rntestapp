@@ -32,7 +32,7 @@ class App extends Component {
         OrdersList: { screen: OrdersList }
       },
       {
-        initialRouteName: "LoginForm",
+        initialRouteName: "OrdersList",
         // removes white space at top of device
         headerMode: "none"
       }
@@ -45,7 +45,7 @@ class App extends Component {
             const currentScreen = getCurrentRouteName(currentState);
             const prevScreen = getCurrentRouteName(prevState);
 
-            // determine if screen changed 
+            // determine if screen changed
             if (prevScreen !== currentScreen) {
               tracker.trackScreenView(currentScreen);
             }

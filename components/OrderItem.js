@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
-import styles from '../styles/styles';
+import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
 
@@ -23,7 +23,8 @@ export default class OrderItem extends Component {
     tracker.trackEvent("_handleAttempted", "_handleAttempted");
 
     // if no first name, check toAttention
-    const deliverTo = this.props.info.recFirstName || this.props.info.toAttention;
+    const deliverTo =
+      this.props.info.recFirstName || this.props.info.toAttention;
 
     return (
       // Card Wrapper
@@ -31,15 +32,17 @@ export default class OrderItem extends Component {
         {/* Order Information */}
         <View>
           <View>
-            <Text style={styles.text}>{deliverTo}</Text>
-          </View>
-
-          <View>
             <Text style={styles.text}>{this.props.info.bloomlinkOrder}</Text>
           </View>
 
-          <View>
-            <Text style={styles.text}>{this.props.info.address1}</Text>
+          <View style={{ flex: 1 }}>
+            <View style={{ alignItems: "center" }}>
+              <Text style={styles.text}>{deliverTo}</Text>
+              <Text style={styles.text}>{this.props.info.address1}</Text>
+              <Text style={styles.text}>
+                {this.props.info.city}, {this.props.info.state}
+              </Text>
+            </View>
           </View>
         </View>
 
