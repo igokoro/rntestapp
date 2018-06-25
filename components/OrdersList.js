@@ -15,18 +15,15 @@ export default class OrdersList extends Component {
     const date = new Date().getDate();
     const month = new Date().getMonth() + 1;
     const year = new Date().getFullYear();
-    const todaysDate = `${date}-${month}-${year}`;
+    const todaysDate = `${month}-${date}-${year}`;
 
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.ordersListHeaderView}>
-          <Text style={styles.headerText}>Your Shops Orders</Text>
+          <Text style={styles.headerText}>Your Shops Orders for:</Text>
+          <Text style={styles.text}>{todaysDate}</Text>
         </View>
-        <View>
-          <Text style={[styles.ordersListDateView, styles.text]}>
-            {todaysDate}
-          </Text>
-        </View>
+
         <FlatList
           data={mockData.result.orders}
           renderItem={this._renderItem}

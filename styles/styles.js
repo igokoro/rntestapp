@@ -48,9 +48,6 @@ export default StyleSheet.create({
   ordersListHeaderView: {
     alignItems: "center"
   },
-  ordersListDateView: {
-    alignSelf: 'flex-end'
-  },
   input: {
     width: 210
   },
