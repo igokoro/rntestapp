@@ -47,7 +47,7 @@ export default class OrderItem extends Component {
         {/* Popup */}
         <View>
           <Modal
-            animationType="slide"
+            animationType="none"
             transparent={false}
             visible={this.state.modalVisible}
             onRequestClose={() => {}}
