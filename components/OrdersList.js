@@ -34,7 +34,7 @@ export default class OrdersList extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.ordersListHeaderView}>
           <Text style={styles.headerText}>Your Shops Orders for:</Text>
-          <Text style={styles.text}>{todaysDate}</Text>
+          <Text style={styles.dateText}>{todaysDate}</Text>
         </View>
 
         <FlatList

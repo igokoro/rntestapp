@@ -47,6 +47,10 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 40
   },
+  dateText: {
+    fontSize: 22,
+    color: "rgb(172, 46, 198)"
+  },
   headerText: {
     fontSize: 22
   },
@@ -56,7 +60,7 @@ export default StyleSheet.create({
   loginBtn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: 'rgb(156, 216, 231)'
+    backgroundColor: "rgba(172, 46, 198, .8)"
   },
   loginFormContainer: {
     justifyContent: "center",
