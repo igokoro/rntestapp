@@ -72,7 +72,7 @@ export default class OrderItem extends Component {
                     this.setModalVisible(!this.state.modalVisible);
                   }}
                 >
-                  <Text style={[styles.text, { textAlign: 'center' }]}>Cancel</Text>
+                  <Text style={styles.text}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
