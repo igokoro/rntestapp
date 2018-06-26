@@ -20,13 +20,13 @@ export default class OrderItem extends Component {
     };
   }
 
-  openModal = (visible) => {
+  openModal = visible => {
     this.setState({ modalVisible: true });
-  }
+  };
 
   closeModal = () => {
     this.setState({ modalVisible: false });
-  }
+  };
 
   _handleDelivered = () => {
     this.openModal();
@@ -73,7 +73,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.attemptedBtn]}
                   onPress={() => {
-                    this.closeModal()
+                    this.closeModal();
                   }}
                 >
                   <Text style={styles.text}>Cancel</Text>
