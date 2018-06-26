@@ -26,6 +26,12 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10
   },
+  btnText: {
+    fontSize: 20,
+    marginTop: 5,
+    fontFamily: "Roboto",
+    textAlign: 'center'
+  },
   confirmBtn: {
     backgroundColor: "rgb(57, 187, 101)"
   },

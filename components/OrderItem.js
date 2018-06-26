@@ -107,7 +107,7 @@ export default class OrderItem extends Component {
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.orderText,
+                styles.btnText,
                 styles.confirmBtn
               ]}
               onPress={this._handleDelivered}
@@ -121,7 +121,7 @@ export default class OrderItem extends Component {
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.orderText,
+                styles.btnText,
                 styles.attemptedBtn
               ]}
               onPress={this._handleAttempted}
