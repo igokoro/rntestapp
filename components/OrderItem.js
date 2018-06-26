@@ -29,7 +29,7 @@ export default class OrderItem extends Component {
   };
 
   _handleAttempted = () => {
-    alert("Delivery Attempted");
+    this.setModalVisible();
   };
 
   render() {
@@ -62,7 +62,7 @@ export default class OrderItem extends Component {
                     this.setModalVisible(!this.state.modalVisible);
                   }}
                 >
-                  <Text style={[styles.text, { textAlign: 'center' }]}>Confirm</Text>
+                  <Text style={styles.text}>Confirm</Text>
                 </TouchableOpacity>
 
                 {/* Cancel Button */}
@@ -81,15 +81,15 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
-          <View>
-            <Text style={styles.text}>{this.props.info.bloomlinkOrder}</Text>
+          <View style={{alignItems: 'flex-start'}}>
+            <Text style={styles.orderText}>{this.props.info.bloomlinkOrder}</Text>
           </View>
 
           <View style={{ flex: 1 }}>
             <View style={{ alignItems: "center" }}>
-              <Text style={styles.text}>{deliverTo}</Text>
-              <Text style={styles.text}>{this.props.info.address1}</Text>
-              <Text style={styles.text}>
+              <Text style={styles.orderText}>{deliverTo}</Text>
+              <Text style={styles.orderText}>{this.props.info.address1}</Text>
+              <Text style={styles.orderText}>
                 {this.props.info.city}, {this.props.info.state}
               </Text>
             </View>
@@ -98,12 +98,12 @@ export default class OrderItem extends Component {
 
         <View style={styles.buttonView}>
           {/* Confirm button */}
-          <TouchableOpacity>
+          <TouchableOpacity style={{width: 175}}>
             <Text
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.text,
+                styles.orderText,
                 styles.confirmBtn
               ]}
               onPress={this._handleDelivered}
@@ -112,12 +112,12 @@ export default class OrderItem extends Component {
             </Text>
           </TouchableOpacity>
           {/* Attemped Btn */}
-          <TouchableOpacity>
+          <TouchableOpacity style={{width: 175}}>
             <Text
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.text,
+                styles.orderText,
                 styles.attemptedBtn
               ]}
               onPress={this._handleAttempted}

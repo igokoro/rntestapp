@@ -75,7 +75,7 @@ export default StyleSheet.create({
     height: 200
   },
   orderCard: {
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   ordersList: {
     alignItems: "center"
@@ -86,6 +86,12 @@ export default StyleSheet.create({
   orderItemView: {
     flex: 1,
     flexDirection: "row"
+  },
+  orderText: {
+    marginTop: 5,
+    fontSize: 16,
+    fontFamily: "Roboto",
+    textAlign: 'center'
   },
   text: {
     marginTop: 12,
