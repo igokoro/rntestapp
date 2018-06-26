@@ -10,7 +10,7 @@ const sampleOrder = {
   deliveryAddress: "315 Spring St. NY, NY 10003",
   deliveryDate: "6/26/2018",
   orderStatus: "DLTA"
-}
+};
 
 export default class OrderItem extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
                   onPress={() => {
-                    this.props.testRef.push(sampleOrder)
+                    this.props.testRef.push(sampleOrder);
                     this.setModalVisible(!this.state.modalVisible);
                   }}
                 >
@@ -81,24 +81,24 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
-          <View style={{alignItems: 'flex-start'}}>
-            <Text style={styles.orderText}>{this.props.info.bloomlinkOrder}</Text>
+          <View style={{ alignItems: "flex-start" }}>
+            <Text style={styles.orderText}>
+              {this.props.info.bloomlinkOrder}
+            </Text>
           </View>
 
-          <View style={{ flex: 1 }}>
-            <View style={{ alignItems: "center" }}>
-              <Text style={styles.orderText}>{deliverTo}</Text>
-              <Text style={styles.orderText}>{this.props.info.address1}</Text>
-              <Text style={styles.orderText}>
-                {this.props.info.city}, {this.props.info.state}
-              </Text>
-            </View>
+          <View style={styles.container}>
+            <Text style={styles.orderText}>{deliverTo}</Text>
+            <Text style={styles.orderText}>{this.props.info.address1}</Text>
+            <Text style={styles.orderText}>
+              {this.props.info.city}, {this.props.info.state}
+            </Text>
           </View>
         </View>
 
         <View style={styles.buttonView}>
           {/* Confirm button */}
-          <TouchableOpacity style={{width: 175}}>
+          <TouchableOpacity style={{ width: 175 }}>
             <Text
               style={[
                 styles.button,
@@ -112,7 +112,7 @@ export default class OrderItem extends Component {
             </Text>
           </TouchableOpacity>
           {/* Attemped Btn */}
-          <TouchableOpacity style={{width: 175}}>
+          <TouchableOpacity style={{ width: 175 }}>
             <Text
               style={[
                 styles.button,
