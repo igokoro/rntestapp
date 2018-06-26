@@ -21,8 +21,9 @@ const mockData = require("../mock.json");
 export default class OrdersList extends Component {
   constructor() {
     super();
-    this.testRef = this.getRef().child('items');
+    this.testRef = this.getRef().child('users').child('orders');
   }
+
   getRef = () => {
     return firebaseApp.database().ref();
   }

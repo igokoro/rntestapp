@@ -5,6 +5,13 @@ import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
 
+const sampleOrder = {
+  bloomlinkOrderNumber: 100001,
+  deliveryAddress: "315 Spring St. NY, NY 10003",
+  deliveryDate: "6/26/2018",
+  orderStatus: "DLTA"
+}
+
 export default class OrderItem extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +44,7 @@ export default class OrderItem extends Component {
       // Card Wrapper
       <View style={[styles.borderBlack, styles.orderCard]}>
         {/* Popup */}
-        <View style={{ marginTop: 22 }}>
+        <View>
           <Modal
             animationType="slide"
             transparent={false}
@@ -50,7 +57,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
                   onPress={() => {
-                    this.props.testRef.push({item: 'test2'})
+                    this.props.testRef.push(sampleOrder)
                     this.setModalVisible(!this.state.modalVisible);
                   }}
                 >
