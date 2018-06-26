@@ -66,7 +66,7 @@ export default class OrderItem extends Component {
                     this.props.testRef.push(sampleOrder);
                   }}
                 >
-                  <Text style={styles.text}>Confirm</Text>
+                  <Text style={[styles.text, {color: 'white'}]}>Confirm</Text>
                 </TouchableOpacity>
 
                 {/* Cancel Button */}
@@ -76,7 +76,7 @@ export default class OrderItem extends Component {
                     this.closeModal();
                   }}
                 >
-                  <Text style={styles.text}>Cancel</Text>
+                  <Text style={[styles.text, {color: 'white'}]}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>

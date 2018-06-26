@@ -43,9 +43,9 @@ export default class LoginForm extends Component {
               secureTextEntry
             />
             {/* Submit button */}
-            <View style={{marginTop: 20}}>
+            <View style={styles.loginBtnView}>
               <TouchableOpacity onPress={this._handleSubmit} style={styles.loginBtn}>
-                <Text style={styles.text}>Log In</Text>
+                <Text style={[styles.text, styles.loginText]}>Log In</Text>
               </TouchableOpacity>
             </View>
           </View>

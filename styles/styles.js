@@ -30,7 +30,8 @@ export default StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
     fontFamily: "Roboto",
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white'
   },
   confirmBtn: {
     backgroundColor: "rgb(57, 187, 101)"
@@ -57,10 +58,20 @@ export default StyleSheet.create({
   input: {
     width: 210
   },
+  loginBtnView: {
+    marginTop: 20,
+    borderRadius: 4,
+    borderWidth: 1.2,
+    borderColor: "black",
+  },
   loginBtn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: "rgba(172, 46, 198, .8)"
+    backgroundColor: "rgba(172, 46, 198, .8)",
+  },
+  loginText: {
+    fontWeight: '400',
+    color: 'white'
   },
   loginFormContainer: {
     justifyContent: "center",
@@ -107,6 +118,7 @@ export default StyleSheet.create({
     marginTop: 12,
     fontSize: 22,
     fontFamily: "Roboto",
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'black'
   }
 });
