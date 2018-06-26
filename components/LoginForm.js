@@ -23,25 +23,33 @@ export default class LoginForm extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Store ID</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={storeID => this.setState({ storeID })}
-          value={this.state.storeID}
-          placeholder='Enter Your StoreID'
-        />
-        <Text style={styles.text}>Password</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={storePass => this.setState({ storePass })}
-          value={this.state.storePass}
-          placeholder="Enter Your Store Password"
-          secureTextEntry
-        />
-        {/* Submit button */}
-        <TouchableOpacity onPress={this._handleSubmit} style={styles.btn}>
-          <Text style={styles.text}>Log In</Text>
-        </TouchableOpacity>
+        <View style={styles.loginFormContainer}>
+          <View>
+            <Text style={styles.text}>Store ID</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={storeID => this.setState({ storeID })}
+              value={this.state.storeID}
+              placeholder="Enter Your StoreID"
+            />
+          </View>
+          <View style={{ marginTop: 30 }}>
+            <Text style={styles.text}>Password</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={storePass => this.setState({ storePass })}
+              value={this.state.storePass}
+              placeholder="Enter Your Store Password"
+              secureTextEntry
+            />
+            {/* Submit button */}
+            <View style={{marginTop: 20}}>
+              <TouchableOpacity onPress={this._handleSubmit} style={styles.loginBtn}>
+                <Text style={styles.text}>Log In</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </View>
     );
   }

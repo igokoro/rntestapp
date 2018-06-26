@@ -44,11 +44,20 @@ export default StyleSheet.create({
   headerText: {
     fontSize: 22
   },
-  ordersListHeaderView: {
-    alignItems: "center"
-  },
   input: {
     width: 210
+  },
+  loginBtn: {
+    paddingHorizontal: 80,
+    height: 50,
+    backgroundColor: 'rgb(156, 216, 231)'
+  },
+  loginFormContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'white',
+    height: 400,
+    width: 300
   },
   modalContainer: {
     flex: 1,
@@ -71,13 +80,17 @@ export default StyleSheet.create({
   ordersList: {
     alignItems: "center"
   },
+  ordersListHeaderView: {
+    alignItems: "center"
+  },
   orderItemView: {
     flex: 1,
     flexDirection: "row"
   },
   text: {
     marginTop: 12,
-    fontSize: 18,
-    fontFamily: "Roboto"
+    fontSize: 22,
+    fontFamily: "Roboto",
+    textAlign: 'center'
   }
 });

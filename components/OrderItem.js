@@ -33,6 +33,7 @@ export default class OrderItem extends Component {
   };
 
   render() {
+    // GA events
     tracker.trackEvent("_handleDelivered", "_handleDelivered");
     tracker.trackEvent("_handleAttempted", "_handleAttempted");
 
