@@ -20,7 +20,6 @@ export default StyleSheet.create({
   btn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: "rgb(146, 201, 219)"
   },
   button: {
     textAlign: "center",
@@ -50,6 +49,21 @@ export default StyleSheet.create({
   },
   input: {
     width: 210
+  },
+  modalContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#00000080"
+  },
+  modalVisible: {
+    justifyContent: 'space-evenly',
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 20,
+    width: 300,
+    height: 200
   },
   orderCard: {
     backgroundColor: "white"

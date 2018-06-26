@@ -32,7 +32,7 @@ class App extends Component {
         OrdersList: { screen: OrdersList }
       },
       {
-        initialRouteName: "LoginForm",
+        initialRouteName: "OrdersList",
         // removes white space at top of device
         headerMode: "none"
       }
