@@ -4,15 +4,7 @@ import OrderItem from "./OrderItem";
 import styles from "../styles/styles";
 
 import * as firebase from 'firebase';
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAUkVqDSTSjZdkovR-NDdHrM13iEIOjOeY",
-    authDomain: "fdelivery-d5ccf.firebaseapp.com",
-    databaseURL: "https://fdelivery-d5ccf.firebaseio.com",
-    projectId: "fdelivery-d5ccf",
-    storageBucket: "fdelivery-d5ccf.appspot.com",
-    messagingSenderId: "812148019941"
-  };
+import firebaseConfig from '../config/firebase';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
