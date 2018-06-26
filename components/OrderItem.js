@@ -20,16 +20,20 @@ export default class OrderItem extends Component {
     };
   }
 
-  setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+  openModal = (visible) => {
+    this.setState({ modalVisible: true });
+  }
+
+  closeModal = () => {
+    this.setState({ modalVisible: false });
   }
 
   _handleDelivered = () => {
-    this.setModalVisible();
+    this.openModal();
   };
 
   _handleAttempted = () => {
-    this.setModalVisible();
+    this.openModal();
   };
 
   render() {
@@ -58,8 +62,8 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
                   onPress={() => {
+                    this.closeModal();
                     this.props.testRef.push(sampleOrder);
-                    this.setModalVisible(!this.state.modalVisible);
                   }}
                 >
                   <Text style={styles.text}>Confirm</Text>
@@ -69,7 +73,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.attemptedBtn]}
                   onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
+                    this.closeModal()
                   }}
                 >
                   <Text style={styles.text}>Cancel</Text>
