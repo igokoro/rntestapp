@@ -9,8 +9,8 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      storeID: "Enter Your Store ID",
-      storePass: "Enter Your Password"
+      storeID: "",
+      storePass: ""
     };
   }
 
@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
 
   render() {
     tracker.trackEvent("_handleSubmit", "_handleSubmit");
-    
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Store ID</Text>
@@ -28,12 +28,15 @@ export default class LoginForm extends Component {
           style={styles.input}
           onChangeText={storeID => this.setState({ storeID })}
           value={this.state.storeID}
+          placeholder='Enter Your StoreID'
         />
         <Text style={styles.text}>Password</Text>
         <TextInput
           style={styles.input}
           onChangeText={storePass => this.setState({ storePass })}
           value={this.state.storePass}
+          placeholder="Enter Your Store Password"
+          secureTextEntry
         />
         {/* Submit button */}
         <TouchableOpacity onPress={this._handleSubmit} style={styles.btn}>
