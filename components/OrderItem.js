@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Modal, Linking } from "react-native";
 import ReactNativeComponentTree from "react-native/Libraries/Renderer/shims/ReactNativeComponentTree";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import styles from "../styles/styles";
@@ -52,6 +52,10 @@ export default class OrderItem extends Component {
     this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
   };
+
+  openMap = () => {
+    Linking.openURL("http://maps.google.com")
+  }
 
   render() {
     // GA events
