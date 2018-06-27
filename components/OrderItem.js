@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Modal } from "react-native";
+import ReactNativeComponentTree from "react-native/Libraries/Renderer/shims/ReactNativeComponentTree";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import styles from "../styles/styles";
 
@@ -16,7 +17,8 @@ export default class OrderItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      deliveryBtnPressed: ""
     };
   }
 
@@ -25,14 +27,16 @@ export default class OrderItem extends Component {
   };
 
   closeModal = () => {
-    this.setState({ modalVisible: false });
+    this.setState({ modalVisible: false, deliveryBtnPressed: "" });
   };
 
   _handleDelivered = () => {
+    this.setState({ deliveryBtnPressed: "Delivered" });
     this.openModal();
   };
 
   _handleAttempted = () => {
+    this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
   };
 
@@ -58,15 +62,24 @@ export default class OrderItem extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalVisible}>
+                <View style={{ marginBottom: 10 }}>
+                  <Text style={styles.text}>
+                    Mark Order as{" "}
+                    <Text style={{ color: "rgb(172, 46, 198)" }}>
+                      {this.state.deliveryBtnPressed}
+                    </Text>
+                  </Text>
+                </View>
                 {/* Confirm Button */}
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
                   onPress={() => {
                     this.closeModal();
+                    // push data to firebase
                     this.props.testRef.push(sampleOrder);
                   }}
                 >
-                  <Text style={[styles.text, {color: 'white'}]}>Confirm</Text>
+                  <Text style={[styles.text, { color: "white" }]}>Confirm</Text>
                 </TouchableOpacity>
 
                 {/* Cancel Button */}
@@ -76,7 +89,7 @@ export default class OrderItem extends Component {
                     this.closeModal();
                   }}
                 >
-                  <Text style={[styles.text, {color: 'white'}]}>Cancel</Text>
+                  <Text style={[styles.text, { color: "white" }]}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
