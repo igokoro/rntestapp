@@ -15,7 +15,8 @@ const sampleOrder = {
 
 // Props
 // - testRef : firebase reference for pushing data
-
+// - info : order info from bloomlink
+// - navigation : ability to navigate screens
 export default class OrderItem extends Component {
   constructor(props) {
     super(props);
