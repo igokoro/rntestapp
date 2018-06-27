@@ -15,7 +15,7 @@ export default StyleSheet.create({
   buttonView: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-evenly"
+    justifyContent: "center"
   },
   btn: {
     paddingHorizontal: 80,

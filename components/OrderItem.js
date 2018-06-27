@@ -56,7 +56,23 @@ export default class OrderItem extends Component {
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
 
-    // const disabled = this.state.disabled;
+    const disabled = this.state.disabled;
+
+    const attemptedBtn = (
+      <TouchableOpacity disabled style={{ width: 175 }}>
+        <Text
+          style={[
+            styles.button,
+            styles.borderBlack,
+            styles.btnText,
+            styles.attemptedBtn
+          ]}
+          onPress={this._handleAttempted}
+        >
+          Attempted
+        </Text>
+      </TouchableOpacity>
+    )
 
     return (
       // Card Wrapper
@@ -141,19 +157,9 @@ export default class OrderItem extends Component {
             </Text>
           </TouchableOpacity>
           {/* Attemped Btn */}
-          <TouchableOpacity disabled style={{ width: 175 }}>
-            <Text
-              style={[
-                styles.button,
-                styles.borderBlack,
-                styles.btnText,
-                styles.attemptedBtn
-              ]}
-              onPress={this._handleAttempted}
-            >
-              Attempted
-            </Text>
-          </TouchableOpacity>
+          <View>
+            {disabled ? null : attemptedBtn}
+          </View>
         </View>
       </View>
     );
