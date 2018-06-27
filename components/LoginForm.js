@@ -27,27 +27,30 @@ export default class LoginForm extends Component {
           <View>
             <Text style={styles.text}>Store ID</Text>
             <TextInput
-              style={styles.input}
+              style={{ width: 220 }}
               onChangeText={storeID => this.setState({ storeID })}
               value={this.state.storeID}
               placeholder="Enter Your StoreID"
             />
           </View>
-          <View style={{ marginTop: 30 }}>
+          <View>
             <Text style={styles.text}>Password</Text>
             <TextInput
-              style={styles.input}
+              style={{ width: 220 }}
               onChangeText={storePass => this.setState({ storePass })}
               value={this.state.storePass}
               placeholder="Enter Your Store Password"
               secureTextEntry
             />
-            {/* Submit button */}
-            <View style={styles.loginBtnView}>
-              <TouchableOpacity onPress={this._handleSubmit} style={styles.loginBtn}>
-                <Text style={[styles.text, styles.loginText]}>Log In</Text>
-              </TouchableOpacity>
-            </View>
+          </View>
+          {/* Submit button */}
+          <View style={styles.loginBtnView}>
+            <TouchableOpacity
+              onPress={this._handleSubmit}
+              style={styles.loginBtn}
+            >
+              <Text style={[styles.text, styles.loginText]}>Log In</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
