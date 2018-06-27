@@ -21,7 +21,8 @@ export default class OrderItem extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      deliveryBtnPressed: ""
+      deliveryBtnPressed: "",
+      disabled: false
     };
   }
 
@@ -30,6 +31,9 @@ export default class OrderItem extends Component {
   };
 
   closeModal = () => {
+    if (this.state.deliveryBtnPressed === "Attempted") {
+      this.setState({ disabled: true });
+    }
     this.setState({ modalVisible: false, deliveryBtnPressed: "" });
   };
 
@@ -52,6 +56,8 @@ export default class OrderItem extends Component {
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
 
+    // const disabled = this.state.disabled;
+
     return (
       // Card Wrapper
       <View style={[styles.borderBlack, styles.orderCard]}>
@@ -65,7 +71,6 @@ export default class OrderItem extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalVisible}>
-
                 {/* Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
                   <Text style={styles.text}>
@@ -92,6 +97,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.attemptedBtn]}
                   onPress={() => {
+                    this._handleAttempted();
                     this.closeModal();
                   }}
                 >
@@ -135,7 +141,7 @@ export default class OrderItem extends Component {
             </Text>
           </TouchableOpacity>
           {/* Attemped Btn */}
-          <TouchableOpacity style={{ width: 175 }}>
+          <TouchableOpacity disabled style={{ width: 175 }}>
             <Text
               style={[
                 styles.button,
