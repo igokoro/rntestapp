@@ -55,9 +55,6 @@ export default StyleSheet.create({
   headerText: {
     fontSize: 22
   },
-  input: {
-    width: 210
-  },
   loginBtnView: {
     marginTop: 20,
     borderRadius: 4,
