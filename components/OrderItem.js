@@ -13,6 +13,9 @@ const sampleOrder = {
   orderStatus: "DLTA"
 };
 
+// Props
+// - testRef : firebase reference for pushing data
+
 export default class OrderItem extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +65,8 @@ export default class OrderItem extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalVisible}>
+
+                {/* Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
                   <Text style={styles.text}>
                     Mark Order as{" "}
@@ -70,6 +75,7 @@ export default class OrderItem extends Component {
                     </Text>
                   </Text>
                 </View>
+
                 {/* Confirm Button */}
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
