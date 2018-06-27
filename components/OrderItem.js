@@ -131,7 +131,7 @@ export default class OrderItem extends Component {
               {this.props.info.bloomlinkOrder}
             </Text>
           </View>
-
+          {/* Address information */}
           <View style={styles.container}>
             <Text style={styles.orderText}>{deliverTo}</Text>
             <Text style={styles.orderText}>{this.props.info.address1}</Text>
@@ -156,8 +156,10 @@ export default class OrderItem extends Component {
               Delivered
             </Text>
           </TouchableOpacity>
+
           {/* Attemped Btn */}
           <View>
+            {/* disables after use */}
             {disabled ? null : attemptedBtn}
           </View>
         </View>
