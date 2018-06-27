@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { Platform, View } from "react-native";
+import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
 import {
@@ -25,6 +25,25 @@ function getCurrentRouteName(navigationState) {
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
 
 class App extends Component {
+  // required for geolocation
+  requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: "local",
+          message: "permissions"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("Location Finding Enabled");
+      } else {
+        console.log("Please Enable Location Services");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
   render() {
     const RootStack = createStackNavigator(
       {
