@@ -24,24 +24,8 @@ export default class OrderItem extends Component {
       modalVisible: false,
       deliveryBtnPressed: "",
       disabled: false,
-      latitude: "x",
-      longitude: "x",
-      error: ""
-    };
-  }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null
-        });
-      },
-      error => this.setState({ error: error.message }),
-      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
-    );
+    };
   }
 
   openModal = visible => {
@@ -77,8 +61,6 @@ export default class OrderItem extends Component {
     // if no first name, check toAttention
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
-
-    const location = this.state.longitude
 
     const disabled = this.state.disabled;
 
@@ -162,7 +144,6 @@ export default class OrderItem extends Component {
             <Text style={styles.orderText}>
               {this.props.info.city}, {this.props.info.state}
             </Text>
-            <Text>{location}</Text>
           </View>
         </View>
 
