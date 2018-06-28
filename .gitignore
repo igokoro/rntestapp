@@ -1,4 +1,4 @@
-config/firebase.js
+config/*
 # OSX
 #
 .DS_Store
