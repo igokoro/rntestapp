@@ -106,13 +106,12 @@ export default StyleSheet.create({
     flexDirection: "row"
   },
   orderText: {
-    marginTop: 5,
     fontSize: 16,
     fontFamily: "Roboto",
     textAlign: 'center'
   },
   text: {
-    marginTop: 12,
+    marginTop: 10,
     fontSize: 22,
     fontFamily: "Roboto",
     textAlign: 'center',

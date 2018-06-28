@@ -31,6 +31,7 @@ export default class OrderItem extends Component {
     this.state = {
       modalVisible: false,
       deliveryBtnPressed: "",
+      modalBtnPressed: "",
       disabled: false,
       lng: null,
       lat: null
@@ -42,7 +43,11 @@ export default class OrderItem extends Component {
   };
 
   closeModal = () => {
-    if (this.state.deliveryBtnPressed === "Attempted") {
+    console.log(this.state);
+    if (
+      this.state.deliveryBtnPressed === "Attempted" &&
+      this.state.modalBtnPressed !== "Cancel"
+    ) {
       this.setState({ disabled: true });
     }
     this.setState({ modalVisible: false, deliveryBtnPressed: "" });
@@ -54,12 +59,21 @@ export default class OrderItem extends Component {
   };
 
   _handleAttempted = () => {
+    // return devices location for Firebase storage
     // const test = navigator.geolocation.getCurrentPosition(position =>
     //   console.log(position)
     // );
-
     this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
+  };
+
+  handleConfirm = () => {
+    this.setState({ modalBtnPressed: "Confirm" });
+    this.closeModal();
+  };
+
+  handleCancel = () => {
+    this.closeModal();
   };
   // called on render for each card
   convertAddress = (street, city, state) => {
@@ -97,11 +111,11 @@ export default class OrderItem extends Component {
       this.props.info.recFirstName || this.props.info.toAttention;
 
     // for attempted button after confirming
-    const disabled = this.state.disabled;
+    const disabled = this.state.modalBtnPressed === "Confirm" ? true : false
 
     // so we can remove it after disabling it
     const attemptedBtn = (
-      <TouchableOpacity disabled style={{ width: 175 }}>
+      <TouchableOpacity disabled={disabled} style={{ width: 175 }}>
         <Text
           style={[
             styles.button,
@@ -123,7 +137,7 @@ export default class OrderItem extends Component {
         <View>
           <Modal
             animationType="none"
-            transparent={false}
+            transparent
             visible={this.state.modalVisible}
             onRequestClose={() => {}}
           >
@@ -143,7 +157,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.confirmBtn]}
                   onPress={() => {
-                    this.closeModal();
+                    this.handleConfirm();
                     // push data to firebase
                     this.props.testRef.push(sampleOrder);
                   }}
@@ -155,8 +169,7 @@ export default class OrderItem extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.attemptedBtn]}
                   onPress={() => {
-                    this._handleAttempted();
-                    this.closeModal();
+                    this.handleCancel();
                   }}
                 >
                   <Text style={[styles.text, { color: "white" }]}>Cancel</Text>
@@ -175,14 +188,14 @@ export default class OrderItem extends Component {
           </View>
           {/* Search Address in GMaps trigger */}
           {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
-            {/* Address information */}
-            <View style={styles.container}>
-              <Text style={styles.orderText}>{deliverTo}</Text>
-              <Text style={styles.orderText}>{this.props.info.address1}</Text>
-              <Text style={styles.orderText}>
-                {this.props.info.city}, {this.props.info.state}
-              </Text>
-            </View>
+          {/* Address information */}
+          <View style={styles.container}>
+            <Text style={styles.orderText}>{deliverTo}</Text>
+            <Text style={styles.orderText}>{this.props.info.address1}</Text>
+            <Text style={styles.orderText}>
+              {this.props.info.city}, {this.props.info.state}
+            </Text>
+          </View>
           {/* </TouchableWithoutFeedback> */}
         </View>
 
