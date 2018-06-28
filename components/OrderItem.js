@@ -1,7 +1,15 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, Modal } from "react-native";
-import ReactNativeComponentTree from "react-native/Libraries/Renderer/shims/ReactNativeComponentTree";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  TouchableWithoutFeedback
+} from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+import openMap from "react-native-open-maps";
+import googleMapsConfig from "../config/googleMaps";
+import Geocoder from "react-native-geocoding";
 import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
@@ -15,14 +23,17 @@ const sampleOrder = {
 
 // Props
 // - testRef : firebase reference for pushing data
-
+// - info : order info from bloomlink
+// - navigation : ability to navigate screens
 export default class OrderItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
       deliveryBtnPressed: "",
-      disabled: false
+      disabled: false,
+      lng: null,
+      lat: null
     };
   }
 
@@ -43,8 +54,29 @@ export default class OrderItem extends Component {
   };
 
   _handleAttempted = () => {
+    // const test = navigator.geolocation.getCurrentPosition(position =>
+    //   console.log(position)
+    // );
+
     this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
+  };
+  // called on render for each card
+  convertAddress = (street, city, state) => {
+    Geocoder.init(googleMapsConfig.gMapsAPIKey);
+
+    Geocoder.from(`${street} ${city}, ${state}`)
+      .then(json => {
+        var location = json.results[0].geometry.location;
+        // console.log("location");
+        // console.log(location);
+        this.setState({ lng: location.lng, lat: location.lat });
+      })
+      .catch(error => console.warn(error));
+  };
+  // triggered by touching the address of each card
+  _goToAddress = () => {
+    openMap({ latitude: this.state.lat, longitude: this.state.lng });
   };
 
   render() {
@@ -52,12 +84,22 @@ export default class OrderItem extends Component {
     tracker.trackEvent("_handleDelivered", "_handleDelivered");
     tracker.trackEvent("_handleAttempted", "_handleAttempted");
 
+    // Convert address into long lat
+    // DO NOT LEAVE THIS UNCOMMENTED IN DEVELOPMENT WILL WASTE API CREDITS
+    // const addressLongLat = this.convertAddress(
+    //   this.props.info.address1,
+    //   this.props.info.city,
+    //   this.props.info.state
+    // );
+
     // if no first name, check toAttention
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
 
+    // for attempted button after confirming
     const disabled = this.state.disabled;
 
+    // so we can remove it after disabling it
     const attemptedBtn = (
       <TouchableOpacity disabled style={{ width: 175 }}>
         <Text
@@ -72,7 +114,7 @@ export default class OrderItem extends Component {
           Attempted
         </Text>
       </TouchableOpacity>
-    )
+    );
 
     return (
       // Card Wrapper
@@ -131,14 +173,17 @@ export default class OrderItem extends Component {
               {this.props.info.bloomlinkOrder}
             </Text>
           </View>
-
-          <View style={styles.container}>
-            <Text style={styles.orderText}>{deliverTo}</Text>
-            <Text style={styles.orderText}>{this.props.info.address1}</Text>
-            <Text style={styles.orderText}>
-              {this.props.info.city}, {this.props.info.state}
-            </Text>
-          </View>
+          {/* Search Address in GMaps trigger */}
+          {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
+            {/* Address information */}
+            <View style={styles.container}>
+              <Text style={styles.orderText}>{deliverTo}</Text>
+              <Text style={styles.orderText}>{this.props.info.address1}</Text>
+              <Text style={styles.orderText}>
+                {this.props.info.city}, {this.props.info.state}
+              </Text>
+            </View>
+          {/* </TouchableWithoutFeedback> */}
         </View>
 
         <View style={styles.buttonView}>
@@ -156,8 +201,10 @@ export default class OrderItem extends Component {
               Delivered
             </Text>
           </TouchableOpacity>
+
           {/* Attemped Btn */}
           <View>
+            {/* disables after use */}
             {disabled ? null : attemptedBtn}
           </View>
         </View>

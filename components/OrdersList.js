@@ -3,8 +3,8 @@ import { View, Text, FlatList } from "react-native";
 import OrderItem from "./OrderItem";
 import styles from "../styles/styles";
 
-import * as firebase from 'firebase';
-import firebaseConfig from '../config/firebase';
+import * as firebase from "firebase";
+import firebaseConfig from "../config/firebase";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -13,15 +13,43 @@ const mockData = require("../mock.json");
 export default class OrdersList extends Component {
   constructor() {
     super();
-    this.testRef = this.getRef().child('users').child('orders');
+    this.state = {
+      deviceLatitude: "x",
+      deviceLongitude: "x",
+      error: ""
+    };
+
+    this.testRef = this.getRef()
+      .child("users")
+      .child("orders");
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          deviceLatitude: position.coords.deviceLatitude,
+          deviceLongitude: position.coords.deviceLongitude,
+          error: null
+        });
+      },
+      error => this.setState({ error: error.message }),
+      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
+    );
   }
 
   getRef = () => {
     return firebaseApp.database().ref();
-  }
+  };
   // item is recognized by FlatList from data, also need to pass navigation
   _renderItem = ({ item }) => {
-    return <OrderItem info={item} testRef={this.testRef} navigation={this.props.navigation} />;
+    return (
+      <OrderItem
+        info={item}
+        testRef={this.testRef}
+        navigation={this.props.navigation}
+      />
+    );
   };
 
   render() {
