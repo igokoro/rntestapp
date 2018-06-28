@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Modal, Linking } from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
+import { googleMapsConfig } from "../config/googleMaps";
+import Geocoder from "react-native-geocoding";
 import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
@@ -44,18 +46,38 @@ export default class OrderItem extends Component {
   };
 
   _handleAttempted = () => {
-    const test = navigator.geolocation.getCurrentPosition(position =>
-      console.log(position)
-    );
+    // const test = navigator.geolocation.getCurrentPosition(position =>
+    //   console.log(position)
+    // );
 
     this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
+  };
+
+  convertAddress = (street, city, state) => {
+    Geocoder.init('AIzaSyAjbeUuEwzvM2S00Thoex0y5TYF0Lj-St8');
+    console.log(`${street} ${city}, ${state}`)
+    Geocoder.from(`${street} ${city}, ${state}`)
+      .then(json => {
+        var location = json.results[0].geometry.location;
+        console.log("location")
+        console.log(location);
+      })
+      .catch(error => console.warn(error));
   };
 
   render() {
     // GA events
     tracker.trackEvent("_handleDelivered", "_handleDelivered");
     tracker.trackEvent("_handleAttempted", "_handleAttempted");
+
+    // Convert address into long lat
+    // DO NOT LEAVE THIS UNCOMMENTED IN DEVELOPMENT WILL WASTE API CREDITS
+    // const addressLongLat = this.convertAddress(
+    //   this.props.info.address1,
+    //   this.props.info.city,
+    //   this.props.info.state
+    // );
 
     // if no first name, check toAttention
     const deliverTo =
