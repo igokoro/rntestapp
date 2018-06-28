@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  AsyncStorage
+} from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import styles from "../styles/styles";
 
@@ -14,7 +20,39 @@ export default class LoginForm extends Component {
     };
   }
 
+  componentWillMount() {
+    this._retrieveData();
+  }
+
+  _storeData = async () => {
+    const loginToken = JSON.stringify({
+      storeID: this.state.storeID,
+      storePass: this.state.storePass
+    });
+
+    try {
+      await AsyncStorage.setItem("loginToken", loginToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(
+        "loginToken",
+        (error, result) => {
+          this.setState({storeID: result.storeID, storePass:result.storePass})
+          console.log("result" + result);
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   _handleSubmit = () => {
+    this._storeData();
     this.props.navigation.navigate("OrdersList");
   };
 
