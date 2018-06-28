@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, Modal, Linking } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  TouchableWithoutFeedback
+} from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import { googleMapsConfig } from "../config/googleMaps";
@@ -25,7 +31,9 @@ export default class OrderItem extends Component {
     this.state = {
       modalVisible: false,
       deliveryBtnPressed: "",
-      disabled: false
+      disabled: false,
+      lng: null,
+      lat: null
     };
   }
 
@@ -55,15 +63,20 @@ export default class OrderItem extends Component {
   };
 
   convertAddress = (street, city, state) => {
-    Geocoder.init('AIzaSyAjbeUuEwzvM2S00Thoex0y5TYF0Lj-St8');
-    console.log(`${street} ${city}, ${state}`)
+    Geocoder.init("AIzaSyAjbeUuEwzvM2S00Thoex0y5TYF0Lj-St8");
+
     Geocoder.from(`${street} ${city}, ${state}`)
       .then(json => {
         var location = json.results[0].geometry.location;
-        console.log("location")
-        console.log(location);
+        // console.log("location");
+        // console.log(location);
+        this.setState({ lng: location.lng, lat: location.lat });
       })
       .catch(error => console.warn(error));
+  };
+
+  _goToAddress = () => {
+    openMap({ latitude: this.state.lat, longitude: this.state.lng });
   };
 
   render() {
@@ -73,11 +86,11 @@ export default class OrderItem extends Component {
 
     // Convert address into long lat
     // DO NOT LEAVE THIS UNCOMMENTED IN DEVELOPMENT WILL WASTE API CREDITS
-    // const addressLongLat = this.convertAddress(
-    //   this.props.info.address1,
-    //   this.props.info.city,
-    //   this.props.info.state
-    // );
+    const addressLongLat = this.convertAddress(
+      this.props.info.address1,
+      this.props.info.city,
+      this.props.info.state
+    );
 
     // if no first name, check toAttention
     const deliverTo =
@@ -161,13 +174,15 @@ export default class OrderItem extends Component {
             </Text>
           </View>
           {/* Address information */}
-          <View style={styles.container}>
-            <Text style={styles.orderText}>{deliverTo}</Text>
-            <Text style={styles.orderText}>{this.props.info.address1}</Text>
-            <Text style={styles.orderText}>
-              {this.props.info.city}, {this.props.info.state}
-            </Text>
-          </View>
+          <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}>
+            <View style={styles.container}>
+              <Text style={styles.orderText}>{deliverTo}</Text>
+              <Text style={styles.orderText}>{this.props.info.address1}</Text>
+              <Text style={styles.orderText}>
+                {this.props.info.city}, {this.props.info.state}
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={styles.buttonView}>
