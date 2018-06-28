@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation";
 import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
+import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
   GoogleAnalyticsSettings,
@@ -58,19 +59,21 @@ class App extends Component {
     );
 
     return (
-      <View style={{ flex: 1 }}>
-        <RootStack
-          onNavigationStateChange={(prevState, currentState) => {
-            const currentScreen = getCurrentRouteName(currentState);
-            const prevScreen = getCurrentRouteName(prevState);
+      <LoginContextProvider>
+        <View style={{ flex: 1 }}>
+          <RootStack
+            onNavigationStateChange={(prevState, currentState) => {
+              const currentScreen = getCurrentRouteName(currentState);
+              const prevScreen = getCurrentRouteName(prevState);
 
-            // determine if screen changed
-            if (prevScreen !== currentScreen) {
-              tracker.trackScreenView(currentScreen);
-            }
-          }}
-        />
-      </View>
+              // determine if screen changed
+              if (prevScreen !== currentScreen) {
+                tracker.trackScreenView(currentScreen);
+              }
+            }}
+          />
+        </View>
+      </LoginContextProvider>
     );
   }
 }
