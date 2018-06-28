@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
-import { googleMapsConfig } from "../config/googleMaps";
+import googleMapsConfig from "../config/googleMaps";
 import Geocoder from "react-native-geocoding";
 import styles from "../styles/styles";
 
@@ -61,9 +61,9 @@ export default class OrderItem extends Component {
     this.setState({ deliveryBtnPressed: "Attempted" });
     this.openModal();
   };
-
+  // called on render for each card
   convertAddress = (street, city, state) => {
-    Geocoder.init("AIzaSyAjbeUuEwzvM2S00Thoex0y5TYF0Lj-St8");
+    Geocoder.init(googleMapsConfig.gMapsAPIKey);
 
     Geocoder.from(`${street} ${city}, ${state}`)
       .then(json => {
@@ -74,7 +74,7 @@ export default class OrderItem extends Component {
       })
       .catch(error => console.warn(error));
   };
-
+  // triggered by touching the address of each card
   _goToAddress = () => {
     openMap({ latitude: this.state.lat, longitude: this.state.lng });
   };
@@ -86,11 +86,11 @@ export default class OrderItem extends Component {
 
     // Convert address into long lat
     // DO NOT LEAVE THIS UNCOMMENTED IN DEVELOPMENT WILL WASTE API CREDITS
-    const addressLongLat = this.convertAddress(
-      this.props.info.address1,
-      this.props.info.city,
-      this.props.info.state
-    );
+    // const addressLongLat = this.convertAddress(
+    //   this.props.info.address1,
+    //   this.props.info.city,
+    //   this.props.info.state
+    // );
 
     // if no first name, check toAttention
     const deliverTo =
@@ -173,8 +173,9 @@ export default class OrderItem extends Component {
               {this.props.info.bloomlinkOrder}
             </Text>
           </View>
-          {/* Address information */}
-          <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}>
+          {/* Search Address in GMaps trigger */}
+          {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
+            {/* Address information */}
             <View style={styles.container}>
               <Text style={styles.orderText}>{deliverTo}</Text>
               <Text style={styles.orderText}>{this.props.info.address1}</Text>
@@ -182,7 +183,7 @@ export default class OrderItem extends Component {
                 {this.props.info.city}, {this.props.info.state}
               </Text>
             </View>
-          </TouchableWithoutFeedback>
+          {/* </TouchableWithoutFeedback> */}
         </View>
 
         <View style={styles.buttonView}>
