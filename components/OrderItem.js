@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Modal, Linking } from "react-native";
-import ReactNativeComponentTree from "react-native/Libraries/Renderer/shims/ReactNativeComponentTree";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+import openMap from "react-native-open-maps";
 import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
@@ -23,8 +23,7 @@ export default class OrderItem extends Component {
     this.state = {
       modalVisible: false,
       deliveryBtnPressed: "",
-      disabled: false,
-
+      disabled: false
     };
   }
 
@@ -53,10 +52,6 @@ export default class OrderItem extends Component {
     this.openModal();
   };
 
-  openMap = () => {
-    Linking.openURL("http://maps.google.com")
-  }
-
   render() {
     // GA events
     tracker.trackEvent("_handleDelivered", "_handleDelivered");
@@ -66,8 +61,10 @@ export default class OrderItem extends Component {
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
 
+    // for attempted button after confirming
     const disabled = this.state.disabled;
 
+    // so we can remove it after disabling it
     const attemptedBtn = (
       <TouchableOpacity disabled style={{ width: 175 }}>
         <Text

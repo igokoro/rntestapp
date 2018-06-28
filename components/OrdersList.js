@@ -14,11 +14,11 @@ export default class OrdersList extends Component {
   constructor() {
     super();
     this.state = {
-      latitude: "x",
-      longitude: "x",
+      deviceLatitude: "x",
+      deviceLongitude: "x",
       error: ""
     };
-    
+
     this.testRef = this.getRef()
       .child("users")
       .child("orders");
@@ -28,8 +28,8 @@ export default class OrdersList extends Component {
     navigator.geolocation.getCurrentPosition(
       position => {
         this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          deviceLatitude: position.coords.deviceLatitude,
+          deviceLongitude: position.coords.deviceLongitude,
           error: null
         });
       },
