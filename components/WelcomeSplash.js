@@ -25,8 +25,8 @@ class WelcomeSplash extends Component {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={[styles.loginText, styles.headerText, {position: 'absolute', top: 0}]}>Attempting Login</Text>
-          <ActivityIndicator size={100} color="#0000ff" />
+          <Text style={[styles.loginText, {position: 'absolute', top: 20, fontSize: 30}]}>1800Flowers Delivery App</Text>
+          <ActivityIndicator size={100} color="white" />
         </View>
       </ImageBackground>
     );
