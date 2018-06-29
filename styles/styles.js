@@ -117,7 +117,7 @@ export default StyleSheet.create({
   splashHeader: {
     position: "absolute",
     top: 20,
-    fontSize: 30
+    fontSize: 30,
   },
   text: {
     marginTop: 10,
