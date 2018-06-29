@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   btn: {
     paddingHorizontal: 80,
-    height: 50,
+    height: 50
   },
   button: {
     textAlign: "center",
@@ -30,8 +30,8 @@ export default StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
     fontFamily: "Roboto",
-    textAlign: 'center',
-    color: 'white'
+    textAlign: "center",
+    color: "white"
   },
   confirmBtn: {
     backgroundColor: "rgb(57, 187, 101)"
@@ -59,21 +59,21 @@ export default StyleSheet.create({
     marginTop: 20,
     borderRadius: 4,
     borderWidth: 1.2,
-    borderColor: "black",
+    borderColor: "black"
   },
   loginBtn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: "rgba(172, 46, 198, .8)",
+    backgroundColor: "rgba(172, 46, 198, .8)"
   },
   loginText: {
-    fontWeight: '400',
-    color: 'white'
+    fontWeight: "400",
+    color: "white"
   },
   loginFormContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'white',
+    backgroundColor: "white",
     height: 400,
     width: 300
   },
@@ -85,7 +85,7 @@ export default StyleSheet.create({
     backgroundColor: "#00000080"
   },
   modalVisible: {
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     backgroundColor: "#fff",
     padding: 20,
     margin: 20,
@@ -93,7 +93,7 @@ export default StyleSheet.create({
     height: 200
   },
   orderCard: {
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   ordersList: {
     alignItems: "center"
@@ -108,13 +108,22 @@ export default StyleSheet.create({
   orderText: {
     fontSize: 16,
     fontFamily: "Roboto",
-    textAlign: 'center'
+    textAlign: "center"
+  },
+  splashImage: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  splashHeader: {
+    position: "absolute",
+    top: 20,
+    fontSize: 30
   },
   text: {
     marginTop: 10,
     fontSize: 22,
     fontFamily: "Roboto",
-    textAlign: 'center',
-    color: 'black'
+    textAlign: "center",
+    color: "black"
   }
 });

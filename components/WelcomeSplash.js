@@ -13,19 +13,13 @@ class WelcomeSplash extends Component {
     return (
       <ImageBackground
         source={require("../assets/images/welcomeSplash.jpg")}
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%"
-        }}
+        style={styles.splashImage}
         resizeMode={"cover"}
       >
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text style={[styles.loginText, {position: 'absolute', top: 20, fontSize: 30}]}>1800Flowers Delivery App</Text>
+        <View style={styles.container}>
+          <Text style={[styles.loginText, styles.splashHeader]}>
+            1800Flowers Delivery App
+          </Text>
           <ActivityIndicator size={100} color="white" />
         </View>
       </ImageBackground>
