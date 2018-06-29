@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation";
 import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
+import WelcomeSplash from './WelcomeSplash';
 import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
@@ -49,10 +50,11 @@ class App extends Component {
     const RootStack = createStackNavigator(
       {
         LoginForm: { screen: LoginForm },
-        OrdersList: { screen: OrdersList }
+        OrdersList: { screen: OrdersList },
+        WelcomeSplash: {screen: WelcomeSplash }
       },
       {
-        initialRouteName: "LoginForm",
+        initialRouteName: "WelcomeSplash",
         // removes white space at top of device
         headerMode: "none"
       }
