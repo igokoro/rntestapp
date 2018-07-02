@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   attemptedBtn: {
-    backgroundColor: "rgb(175, 29, 29)"
+    backgroundColor: "white"
   },
   borderBlack: {
     borderRadius: 4,
@@ -26,15 +26,25 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10
   },
-  btnText: {
+  btnTextWhite: {
     fontSize: 20,
     marginTop: 5,
     fontFamily: "Roboto",
     textAlign: "center",
     color: "white"
   },
+  btnTextBlack: {
+    fontSize: 20,
+    marginTop: 5,
+    fontFamily: "Roboto",
+    textAlign: "center",
+    color: "black"
+  },
   confirmBtn: {
-    backgroundColor: "rgb(57, 187, 101)"
+    backgroundColor: "green"
+  },
+  cancelBtn: {
+    backgroundColor: 'red'
   },
   container: {
     flex: 1,
@@ -50,7 +60,10 @@ export default StyleSheet.create({
   },
   dateText: {
     fontSize: 22,
-    color: "rgb(172, 46, 198)"
+    color: "#5e3987"
+  },
+  deliveredBtn: {
+    backgroundColor: "#5e3987"
   },
   headerText: {
     fontSize: 22
@@ -64,7 +77,7 @@ export default StyleSheet.create({
   loginBtn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: "rgba(172, 46, 198, .8)"
+    backgroundColor: "#5e3987"
   },
   loginText: {
     fontWeight: "400",
@@ -127,6 +140,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: "Roboto",
     textAlign: "center",
-    color: "black"
+    color: "rgb(0, 0, 0)"
   }
 });

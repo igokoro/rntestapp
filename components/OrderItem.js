@@ -120,7 +120,7 @@ export default class OrderItem extends Component {
           style={[
             styles.button,
             styles.borderBlack,
-            styles.btnText,
+            styles.btnTextBlack,
             styles.attemptedBtn
           ]}
           onPress={this._handleAttempted}
@@ -147,7 +147,7 @@ export default class OrderItem extends Component {
                 <View style={{ marginBottom: 10 }}>
                   <Text style={styles.text}>
                     Mark Order as{" "}
-                    <Text style={{ color: "rgb(172, 46, 198)" }}>
+                    <Text style={{ color: "#5e3987" }}>
                       {this.state.deliveryBtnPressed}
                     </Text>
                   </Text>
@@ -155,7 +155,7 @@ export default class OrderItem extends Component {
 
                 {/* Confirm Button */}
                 <TouchableOpacity
-                  style={[styles.btn, styles.confirmBtn]}
+                  style={[styles.btn, styles.deliveredBtn, styles.btnTextWhite]}
                   onPress={() => {
                     this.handleConfirm();
                     // push data to firebase
@@ -167,12 +167,21 @@ export default class OrderItem extends Component {
 
                 {/* Cancel Button */}
                 <TouchableOpacity
-                  style={[styles.btn, styles.attemptedBtn]}
+                  style={[
+                    styles.btn,
+                    styles.attemptedBtn,
+                    styles.btnTextBlack,
+                    {
+                      borderRadius: 4,
+                      borderWidth: 0.5,
+                      borderColor: "black"
+                    }
+                  ]}
                   onPress={() => {
                     this.handleCancel();
                   }}
                 >
-                  <Text style={[styles.text, { color: "white" }]}>Cancel</Text>
+                  <Text style={styles.text}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -181,11 +190,15 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
-          <View style={{ justifyContent: "space-between", flexDirection: 'row' }}>
+          <View
+            style={{ justifyContent: "space-between", flexDirection: "row" }}
+          >
             <Text style={styles.orderText}>
               {this.props.info.bloomlinkOrder}
             </Text>
-            <Text style={[styles.orderText, styles.orderStatusText]}>{this.props.info.orderStatus}</Text>
+            <Text style={[styles.orderText, styles.orderStatusText]}>
+              {this.props.info.orderStatus}
+            </Text>
           </View>
           {/* Search Address in GMaps trigger */}
           {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
@@ -207,8 +220,8 @@ export default class OrderItem extends Component {
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.btnText,
-                styles.confirmBtn
+                styles.btnTextWhite,
+                styles.deliveredBtn
               ]}
               onPress={this._handleDelivered}
             >
