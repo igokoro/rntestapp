@@ -11,7 +11,7 @@ export default class LoginContextProvider extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('yes')
     this._retrieveData();
   }
