@@ -105,6 +105,9 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "row"
   },
+  orderStatusText: {
+    color: "red"
+  },
   orderText: {
     fontSize: 16,
     fontFamily: "Roboto",

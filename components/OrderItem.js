@@ -111,7 +111,7 @@ export default class OrderItem extends Component {
       this.props.info.recFirstName || this.props.info.toAttention;
 
     // for attempted button after confirming
-    const disabled = this.state.modalBtnPressed === "Confirm" ? true : false
+    const disabled = this.state.modalBtnPressed === "Confirm" ? true : false;
 
     // so we can remove it after disabling it
     const attemptedBtn = (
@@ -143,7 +143,7 @@ export default class OrderItem extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalVisible}>
-                {/* Order Information Text */}
+                {/* Modal Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
                   <Text style={styles.text}>
                     Mark Order as{" "}
@@ -181,10 +181,11 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
-          <View style={{ alignItems: "flex-start" }}>
+          <View style={{ justifyContent: "space-between", flexDirection: 'row' }}>
             <Text style={styles.orderText}>
               {this.props.info.bloomlinkOrder}
             </Text>
+            <Text style={[styles.orderText, styles.orderStatusText]}>{this.props.info.orderStatus}</Text>
           </View>
           {/* Search Address in GMaps trigger */}
           {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}

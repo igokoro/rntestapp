@@ -12,7 +12,8 @@
         "address2": "address2",
         "city": "NY",
         "state": "NY",
-        "country": "USA"
+        "country": "USA",
+        "orderStatus": "undelivered"
       },
       {
         "bloomlinkOrder": "1111112",
@@ -24,7 +25,8 @@
         "address2": "2address2",
         "city": "Wilmington",
         "state": "NC",
-        "country": "2country"
+        "country": "2country",
+        "orderStatus": "undelivered"
       },
       {
         "bloomlinkOrder": "bloomlinkOrder",
@@ -36,7 +38,8 @@
         "address2": "address2",
         "city": "city",
         "state": "state",
-        "country": "country"
+        "country": "country",
+        "orderStatus": "undelivered"
       },
       {
         "bloomlinkOrder": "bloomlinkOrder",
@@ -48,7 +51,8 @@
         "address2": "2address2",
         "city": "2city",
         "state": "2state",
-        "country": "2country"
+        "country": "2country",
+        "orderStatus": "undelivered"
       },
       {
         "bloomlinkOrder": "bloomlinkOrder",
@@ -60,7 +64,8 @@
         "address2": "address2",
         "city": "city",
         "state": "state",
-        "country": "country"
+        "country": "country",
+        "orderStatus": "undelivered"
       },
       {
         "bloomlinkOrder": "bloomlinkOrder",
@@ -72,7 +77,8 @@
         "address2": "2address2",
         "city": "2city",
         "state": "2state",
-        "country": "2country"
+        "country": "2country",
+        "orderStatus": "undelivered"
       }
     ]
   }
