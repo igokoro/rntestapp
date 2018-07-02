@@ -47,8 +47,8 @@ export default class LoginForm extends Component {
       <View style={styles.container}>
         <LoginContext.Consumer>
           {context => {
-            console.log(context)
             return (
+              // Store ID
               <View style={styles.loginFormContainer}>
                 <View>
                   <Text style={styles.text}>Store ID</Text>
@@ -56,18 +56,20 @@ export default class LoginForm extends Component {
                     style={{ width: 220 }}
                     onChangeText={storeID => this.setState({ storeID })}
                     value={this.state.storeID}
-                    placeholder="Enter Your StoreID"
+                    placeholder="Enter Your Store ID"
                   />
                 </View>
+                {/* User ID */}
                 <View>
                   <Text style={styles.text}>User ID</Text>
                   <TextInput
                     style={{ width: 220 }}
                     onChangeText={userID => this.setState({ userID })}
                     value={this.state.userID}
-                    placeholder="Enter Your UserID"
+                    placeholder="Enter Your User ID"
                   />
                 </View>
+                {/* Passowrd */}
                 <View>
                   <Text style={styles.text}>Password</Text>
                   <TextInput
