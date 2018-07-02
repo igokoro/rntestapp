@@ -83,7 +83,6 @@ class App extends Component {
     );
 
     return (
-      <LoginContextProvider>
         <View style={{ flex: 1 }}>
           <RootStack
             onNavigationStateChange={(prevState, currentState) => {
@@ -97,7 +96,6 @@ class App extends Component {
             }}
           />
         </View>
-      </LoginContextProvider>
     );
   }
 }
