@@ -17,7 +17,8 @@ export default class LoginForm extends Component {
     super(props);
     this.state = {
       storeID: "",
-      storePass: ""
+      storePass: "",
+      userID: ""
     };
   }
 
@@ -56,6 +57,15 @@ export default class LoginForm extends Component {
                     onChangeText={storeID => this.setState({ storeID })}
                     value={this.state.storeID}
                     placeholder="Enter Your StoreID"
+                  />
+                </View>
+                <View>
+                  <Text style={styles.text}>User ID</Text>
+                  <TextInput
+                    style={{ width: 220 }}
+                    onChangeText={userID => this.setState({ userID })}
+                    value={this.state.userID}
+                    placeholder="Enter Your UserID"
                   />
                 </View>
                 <View>

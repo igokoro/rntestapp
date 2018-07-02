@@ -54,7 +54,7 @@ class App extends Component {
         WelcomeSplash: {screen: WelcomeSplash }
       },
       {
-        initialRouteName: "WelcomeSplash",
+        initialRouteName: "LoginForm",
         // removes white space at top of device
         headerMode: "none"
       }
