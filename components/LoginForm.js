@@ -17,26 +17,31 @@ export default class LoginForm extends Component {
     super(props);
     this.state = {
       storeID: "",
-      storePass: ""
+      storePass: "",
+      userID: ""
     };
   }
 
-  _storeData = async () => {
-    const loginToken = JSON.stringify({
-      storeID: this.state.storeID,
-      storePass: this.state.storePass
-    });
-
-    try {
-      await AsyncStorage.setItem("loginToken", loginToken);
-    } catch (error) {
-      console.log(error);
-    }
+  componentDidMount() {
+    this.retrieveData();
   };
 
-  _handleSubmit = () => {
-    this._storeData();
-    this.props.navigation.navigate("OrdersList");
+  storeData = async () => {
+    const loginToken = JSON.stringify({
+      storeID: this.state.storeID,
+      storePass: this.state.storePass,
+      userID: this.state.userID
+    });
+    console.log("hello")
+    AsyncStorage.setItem("loginToken", loginToken);
+  };
+
+  retrieveData = async () => {
+    const loginToken = await AsyncStorage.getItem("loginToken");
+    console.log(loginToken)
+    // This will switch to the App screen or Auth screen and this loading
+    // screen will be unmounted and thrown away.
+    this.props.navigation.navigate(loginToken ? "App" : "Auth");
   };
 
   render() {
@@ -46,8 +51,8 @@ export default class LoginForm extends Component {
       <View style={styles.container}>
         <LoginContext.Consumer>
           {context => {
-            console.log(context)
             return (
+              // Store ID
               <View style={styles.loginFormContainer}>
                 <View>
                   <Text style={styles.text}>Store ID</Text>
@@ -55,9 +60,20 @@ export default class LoginForm extends Component {
                     style={{ width: 220 }}
                     onChangeText={storeID => this.setState({ storeID })}
                     value={this.state.storeID}
-                    placeholder="Enter Your StoreID"
+                    placeholder="Enter Your Store ID"
                   />
                 </View>
+                {/* User ID */}
+                <View>
+                  <Text style={styles.text}>User ID</Text>
+                  <TextInput
+                    style={{ width: 220 }}
+                    onChangeText={userID => this.setState({ userID })}
+                    value={this.state.userID}
+                    placeholder="Enter Your User ID"
+                  />
+                </View>
+                {/* Passowrd */}
                 <View>
                   <Text style={styles.text}>Password</Text>
                   <TextInput
@@ -71,7 +87,7 @@ export default class LoginForm extends Component {
                 {/* Submit button */}
                 <View style={styles.loginBtnView}>
                   <TouchableOpacity
-                    onPress={this._handleSubmit}
+                    onPress={() => this.storeData()}
                     style={styles.loginBtn}
                   >
                     <Text style={[styles.text, styles.loginText]}>Log In</Text>

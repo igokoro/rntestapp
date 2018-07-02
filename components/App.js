@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator, createSwitchNavigator } from "react-navigation";
 import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
-import WelcomeSplash from './WelcomeSplash';
+import WelcomeSplash from "./WelcomeSplash";
 import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
@@ -47,21 +47,42 @@ class App extends Component {
     }
   };
   render() {
-    const RootStack = createStackNavigator(
+    const AppStack = createStackNavigator(
       {
-        LoginForm: { screen: LoginForm },
-        OrdersList: { screen: OrdersList },
-        WelcomeSplash: {screen: WelcomeSplash }
+        OrdersList: { screen: OrdersList }
       },
       {
-        initialRouteName: "WelcomeSplash",
+        initialRouteName: "OrdersList",
+        // removes white space at top of device
+        headerMode: "none"
+      }
+    );
+
+    const AuthStack = createStackNavigator(
+      {
+        LoginForm: { screen: LoginForm }
+      },
+      {
+        initialRouteName: "LoginForm",
+        // removes white space at top of device
+        headerMode: "none"
+      }
+    );
+
+    const RootStack = createSwitchNavigator(
+      {
+        WelcomeSplash: { screen: WelcomeSplash },
+        App: { screen: AppStack },
+        Auth: { screen: AuthStack }
+      },
+      {
+        initialRouteName: "Auth",
         // removes white space at top of device
         headerMode: "none"
       }
     );
 
     return (
-      <LoginContextProvider>
         <View style={{ flex: 1 }}>
           <RootStack
             onNavigationStateChange={(prevState, currentState) => {
@@ -75,7 +96,6 @@ class App extends Component {
             }}
           />
         </View>
-      </LoginContextProvider>
     );
   }
 }

@@ -159,7 +159,7 @@ export default class OrderItem extends Component {
                   onPress={() => {
                     this.handleConfirm();
                     // push data to firebase
-                    this.props.testRef.push(sampleOrder);
+                    // this.props.testRef.push(sampleOrder);
                   }}
                 >
                   <Text style={[styles.text, { color: "white" }]}>Confirm</Text>
