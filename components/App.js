@@ -4,7 +4,6 @@ import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
 import WelcomeSplash from "./WelcomeSplash";
-import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
   GoogleAnalyticsSettings,
