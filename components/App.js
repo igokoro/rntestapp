@@ -3,6 +3,8 @@ import { createStackNavigator } from "react-navigation";
 import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
+import WelcomeSplash from './WelcomeSplash';
+import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
   GoogleAnalyticsSettings,
@@ -48,29 +50,32 @@ class App extends Component {
     const RootStack = createStackNavigator(
       {
         LoginForm: { screen: LoginForm },
-        OrdersList: { screen: OrdersList }
+        OrdersList: { screen: OrdersList },
+        WelcomeSplash: {screen: WelcomeSplash }
       },
       {
-        initialRouteName: "LoginForm",
+        initialRouteName: "WelcomeSplash",
         // removes white space at top of device
         headerMode: "none"
       }
     );
 
     return (
-      <View style={{ flex: 1 }}>
-        <RootStack
-          onNavigationStateChange={(prevState, currentState) => {
-            const currentScreen = getCurrentRouteName(currentState);
-            const prevScreen = getCurrentRouteName(prevState);
+      <LoginContextProvider>
+        <View style={{ flex: 1 }}>
+          <RootStack
+            onNavigationStateChange={(prevState, currentState) => {
+              const currentScreen = getCurrentRouteName(currentState);
+              const prevScreen = getCurrentRouteName(prevState);
 
-            // determine if screen changed
-            if (prevScreen !== currentScreen) {
-              tracker.trackScreenView(currentScreen);
-            }
-          }}
-        />
-      </View>
+              // determine if screen changed
+              if (prevScreen !== currentScreen) {
+                tracker.trackScreenView(currentScreen);
+              }
+            }}
+          />
+        </View>
+      </LoginContextProvider>
     );
   }
 }
