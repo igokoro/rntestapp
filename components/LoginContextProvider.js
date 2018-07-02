@@ -33,7 +33,7 @@ export default class LoginContextProvider extends Component {
     }
   };
 
-  render() {    
+  render() {
     return <LoginContext.Provider value={this.state}>{this.props.children}</LoginContext.Provider>;
   }
 }
