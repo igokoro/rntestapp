@@ -75,7 +75,7 @@ class App extends Component {
         Auth: { screen: AuthStack }
       },
       {
-        initialRouteName: "App",
+        initialRouteName: "Auth",
         // removes white space at top of device
         headerMode: "none"
       }
