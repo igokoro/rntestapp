@@ -24,7 +24,7 @@ export default class LoginForm extends Component {
 
   componentDidMount() {
     this.retrieveData();
-  };
+  }
 
   storeData = async () => {
     const loginToken = JSON.stringify({
@@ -32,13 +32,13 @@ export default class LoginForm extends Component {
       storePass: this.state.storePass,
       userID: this.state.userID
     });
-    console.log("hello")
+    console.log("hello");
     AsyncStorage.setItem("loginToken", loginToken);
   };
 
   retrieveData = async () => {
     const loginToken = await AsyncStorage.getItem("loginToken");
-    console.log(loginToken)
+    console.log(loginToken);
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     this.props.navigation.navigate(loginToken ? "App" : "Auth");
@@ -49,54 +49,48 @@ export default class LoginForm extends Component {
 
     return (
       <View style={styles.container}>
-        <LoginContext.Consumer>
-          {context => {
-            return (
-              // Store ID
-              <View style={styles.loginFormContainer}>
-                <View>
-                  <Text style={styles.text}>Store ID</Text>
-                  <TextInput
-                    style={{ width: 220 }}
-                    onChangeText={storeID => this.setState({ storeID })}
-                    value={this.state.storeID}
-                    placeholder="Enter Your Store ID"
-                  />
-                </View>
-                {/* User ID */}
-                <View>
-                  <Text style={styles.text}>User ID</Text>
-                  <TextInput
-                    style={{ width: 220 }}
-                    onChangeText={userID => this.setState({ userID })}
-                    value={this.state.userID}
-                    placeholder="Enter Your User ID"
-                  />
-                </View>
-                {/* Passowrd */}
-                <View>
-                  <Text style={styles.text}>Password</Text>
-                  <TextInput
-                    style={{ width: 220 }}
-                    onChangeText={storePass => this.setState({ storePass })}
-                    value={this.state.storePass}
-                    placeholder="Enter Your Store Password"
-                    secureTextEntry
-                  />
-                </View>
-                {/* Submit button */}
-                <View style={styles.loginBtnView}>
-                  <TouchableOpacity
-                    onPress={() => this.storeData()}
-                    style={styles.loginBtn}
-                  >
-                    <Text style={[styles.text, styles.loginText]}>Log In</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            );
-          }}
-        </LoginContext.Consumer>
+        {/* Store ID */}
+        <View style={styles.loginFormContainer}>
+          <View>
+            <Text style={styles.text}>Store ID</Text>
+            <TextInput
+              style={{ width: 220 }}
+              onChangeText={storeID => this.setState({ storeID })}
+              value={this.state.storeID}
+              placeholder="Enter Your Store ID"
+            />
+          </View>
+          {/* User ID */}
+          <View>
+            <Text style={styles.text}>User ID</Text>
+            <TextInput
+              style={{ width: 220 }}
+              onChangeText={userID => this.setState({ userID })}
+              value={this.state.userID}
+              placeholder="Enter Your User ID"
+            />
+          </View>
+          {/* Passowrd */}
+          <View>
+            <Text style={styles.text}>Password</Text>
+            <TextInput
+              style={{ width: 220 }}
+              onChangeText={storePass => this.setState({ storePass })}
+              value={this.state.storePass}
+              placeholder="Enter Your Store Password"
+              secureTextEntry
+            />
+          </View>
+          {/* Submit button */}
+          <View style={styles.loginBtnView}>
+            <TouchableOpacity
+              onPress={() => this.storeData()}
+              style={styles.loginBtn}
+            >
+              <Text style={[styles.text, styles.loginText]}>Log In</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }

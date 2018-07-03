@@ -32,7 +32,6 @@ export default class OrderItem extends Component {
       modalVisible: false,
       deliveryBtnPressed: "",
       modalBtnPressed: "",
-      disabled: false,
       lng: null,
       lat: null
     };
@@ -50,7 +49,7 @@ export default class OrderItem extends Component {
     ) {
       this.setState({ disabled: true });
     }
-    this.setState({ modalVisible: false, deliveryBtnPressed: "" });
+    this.setState({ modalVisible: false });
   };
 
   _handleDelivered = () => {
@@ -69,6 +68,12 @@ export default class OrderItem extends Component {
 
   handleConfirm = () => {
     this.setState({ modalBtnPressed: "Confirm" });
+    if (
+      this.state.modalBtnPressed === "Confirm" &&
+      this.state.deliveryBtnPressed === "Attempted"
+    ) {
+      this.setState({ orderStatus: "ATTEMPTED" });
+    }
     this.closeModal();
   };
 
@@ -110,29 +115,21 @@ export default class OrderItem extends Component {
     const deliverTo =
       this.props.info.recFirstName || this.props.info.toAttention;
 
-    // for attempted button after confirming
-    const disabled = this.state.modalBtnPressed === "Confirm" ? true : false
-
-    // so we can remove it after disabling it
-    const attemptedBtn = (
-      <TouchableOpacity disabled={disabled} style={{ width: 175 }}>
-        <Text
-          style={[
-            styles.button,
-            styles.borderBlack,
-            styles.btnText,
-            styles.attemptedBtn
-          ]}
-          onPress={this._handleAttempted}
-        >
-          Attempted
-        </Text>
-      </TouchableOpacity>
-    );
+    const modalStatus = this.state.modalBtnPressed;
+    const deliveryStatus = this.state.deliveryBtnPressed;
+    const orderStatus =
+      modalStatus === "Confirm" && deliveryStatus === "Attempted"
+        ? "ATTEMPTED"
+        : "undelivered";
 
     return (
       // Card Wrapper
-      <View style={[styles.borderBlack, styles.orderCard]}>
+      <View
+        style={[
+          styles.orderCard,
+          orderStatus === "ATTEMPTED" ? styles.borderOrange : styles.borderBlack
+        ]}
+      >
         {/* Popup */}
         <View>
           <Modal
@@ -143,11 +140,11 @@ export default class OrderItem extends Component {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalVisible}>
-                {/* Order Information Text */}
+                {/* Modal Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
                   <Text style={styles.text}>
                     Mark Order as{" "}
-                    <Text style={{ color: "rgb(172, 46, 198)" }}>
+                    <Text style={{ color: "#5e3987" }}>
                       {this.state.deliveryBtnPressed}
                     </Text>
                   </Text>
@@ -155,7 +152,7 @@ export default class OrderItem extends Component {
 
                 {/* Confirm Button */}
                 <TouchableOpacity
-                  style={[styles.btn, styles.confirmBtn]}
+                  style={[styles.btn, styles.deliveredBtn, styles.btnTextWhite]}
                   onPress={() => {
                     this.handleConfirm();
                     // push data to firebase
@@ -167,12 +164,21 @@ export default class OrderItem extends Component {
 
                 {/* Cancel Button */}
                 <TouchableOpacity
-                  style={[styles.btn, styles.attemptedBtn]}
+                  style={[
+                    styles.btn,
+                    styles.attemptedBtn,
+                    styles.btnTextBlack,
+                    {
+                      borderRadius: 4,
+                      borderWidth: 0.5,
+                      borderColor: "black"
+                    }
+                  ]}
                   onPress={() => {
                     this.handleCancel();
                   }}
                 >
-                  <Text style={[styles.text, { color: "white" }]}>Cancel</Text>
+                  <Text style={styles.text}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -181,9 +187,14 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
-          <View style={{ alignItems: "flex-start" }}>
+          <View
+            style={{ justifyContent: "space-between", flexDirection: "row" }}
+          >
             <Text style={styles.orderText}>
               {this.props.info.bloomlinkOrder}
+            </Text>
+            <Text style={[styles.orderText, styles.orderStatusText]}>
+              {orderStatus}
             </Text>
           </View>
           {/* Search Address in GMaps trigger */}
@@ -200,14 +211,15 @@ export default class OrderItem extends Component {
         </View>
 
         <View style={styles.buttonView}>
-          {/* Confirm button */}
+          {/* Delivered button */}
           <TouchableOpacity style={{ width: 175 }}>
             <Text
               style={[
                 styles.button,
                 styles.borderBlack,
-                styles.btnText,
-                styles.confirmBtn
+                styles.btnTextWhite,
+                styles.deliveredBtn,
+                { fontSize: 18 }
               ]}
               onPress={this._handleDelivered}
             >
@@ -218,7 +230,20 @@ export default class OrderItem extends Component {
           {/* Attemped Btn */}
           <View>
             {/* disables after use */}
-            {disabled ? null : attemptedBtn}
+            <TouchableOpacity style={{ width: 175 }}>
+              <Text
+                style={[
+                  styles.button,
+                  styles.borderBlack,
+                  styles.btnTextBlack,
+                  styles.attemptedBtn,
+                  { fontSize: 18 }
+                ]}
+                onPress={this._handleAttempted}
+              >
+                Attempted
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

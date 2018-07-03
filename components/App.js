@@ -4,7 +4,6 @@ import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
 import WelcomeSplash from "./WelcomeSplash";
-import LoginContextProvider from "./LoginContextProvider";
 import {
   GoogleAnalyticsTracker,
   GoogleAnalyticsSettings,
@@ -76,7 +75,7 @@ class App extends Component {
         Auth: { screen: AuthStack }
       },
       {
-        initialRouteName: "Auth",
+        initialRouteName: "App",
         // removes white space at top of device
         headerMode: "none"
       }

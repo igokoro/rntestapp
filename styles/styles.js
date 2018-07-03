@@ -3,12 +3,19 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   attemptedBtn: {
-    backgroundColor: "rgb(175, 29, 29)"
+    backgroundColor: "white"
   },
   borderBlack: {
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: "black",
+    padding: 10,
+    margin: 5
+  },
+  borderOrange: {
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "orange",
     padding: 10,
     margin: 5
   },
@@ -26,15 +33,15 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10
   },
-  btnText: {
-    fontSize: 20,
+  btnTextWhite: {
     marginTop: 5,
-    fontFamily: "Roboto",
     textAlign: "center",
     color: "white"
   },
-  confirmBtn: {
-    backgroundColor: "rgb(57, 187, 101)"
+  btnTextBlack: {
+    marginTop: 5,
+    textAlign: "center",
+    color: "black"
   },
   container: {
     flex: 1,
@@ -50,7 +57,10 @@ export default StyleSheet.create({
   },
   dateText: {
     fontSize: 22,
-    color: "rgb(172, 46, 198)"
+    color: "#5e3987"
+  },
+  deliveredBtn: {
+    backgroundColor: "#5e3987"
   },
   headerText: {
     fontSize: 22
@@ -64,7 +74,7 @@ export default StyleSheet.create({
   loginBtn: {
     paddingHorizontal: 80,
     height: 50,
-    backgroundColor: "rgba(172, 46, 198, .8)"
+    backgroundColor: "#5e3987"
   },
   loginText: {
     fontWeight: "400",
@@ -105,6 +115,9 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "row"
   },
+  orderStatusText: {
+    color: "red"
+  },
   orderText: {
     fontSize: 16,
     fontFamily: "Roboto",
@@ -124,6 +137,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: "Roboto",
     textAlign: "center",
-    color: "black"
+    color: "rgb(0, 0, 0)"
   }
 });
