@@ -68,8 +68,11 @@ export default class OrderItem extends Component {
 
   handleConfirm = () => {
     this.setState({ modalBtnPressed: "Confirm" });
-    if (this.state.modalBtnPressed === "Confirm" && this.state.deliveryBtnPressed === "Attempted") {
-      this.setState({orderStatus: "ATTEMPTED"})
+    if (
+      this.state.modalBtnPressed === "Confirm" &&
+      this.state.deliveryBtnPressed === "Attempted"
+    ) {
+      this.setState({ orderStatus: "ATTEMPTED" });
     }
     this.closeModal();
   };
@@ -114,13 +117,19 @@ export default class OrderItem extends Component {
 
     const modalStatus = this.state.modalBtnPressed;
     const deliveryStatus = this.state.deliveryBtnPressed;
-    console.log(this.state)
-
-    const orderStatus = modalStatus === "Confirm" && deliveryStatus === "Attempted" ? 'ATTEMPTED' : 'undelivered'
+    const orderStatus =
+      modalStatus === "Confirm" && deliveryStatus === "Attempted"
+        ? "ATTEMPTED"
+        : "undelivered";
 
     return (
       // Card Wrapper
-      <View style={[styles.orderCard, modalStatus === 'Confirm' && deliveryStatus === "Attempted" ? styles.borderOrange : styles.borderBlack]}>
+      <View
+        style={[
+          styles.orderCard,
+          orderStatus === "ATTEMPTED" ? styles.borderOrange : styles.borderBlack
+        ]}
+      >
         {/* Popup */}
         <View>
           <Modal
