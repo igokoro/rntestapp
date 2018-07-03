@@ -12,6 +12,13 @@ export default StyleSheet.create({
     padding: 10,
     margin: 5
   },
+  borderOrange: {
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "orange",
+    padding: 10,
+    margin: 5
+  },
   buttonView: {
     flex: 1,
     flexDirection: "row",
@@ -27,24 +34,14 @@ export default StyleSheet.create({
     margin: 10
   },
   btnTextWhite: {
-    fontSize: 20,
     marginTop: 5,
-    fontFamily: "Roboto",
     textAlign: "center",
     color: "white"
   },
   btnTextBlack: {
-    fontSize: 20,
     marginTop: 5,
-    fontFamily: "Roboto",
     textAlign: "center",
     color: "black"
-  },
-  confirmBtn: {
-    backgroundColor: "green"
-  },
-  cancelBtn: {
-    backgroundColor: 'red'
   },
   container: {
     flex: 1,
