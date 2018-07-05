@@ -42,13 +42,6 @@ export default class OrderItem extends Component {
   };
 
   closeModal = () => {
-    console.log(this.state);
-    if (
-      this.state.deliveryBtnPressed === "Attempted" &&
-      this.state.modalBtnPressed !== "Cancel"
-    ) {
-      this.setState({ disabled: true });
-    }
     this.setState({ modalVisible: false });
   };
 
@@ -68,6 +61,7 @@ export default class OrderItem extends Component {
 
   handleConfirm = () => {
     this.setState({ modalBtnPressed: "Confirm" });
+    // If the driver confirms a attempted delivery, change order status
     if (
       this.state.modalBtnPressed === "Confirm" &&
       this.state.deliveryBtnPressed === "Attempted"
@@ -187,13 +181,16 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
+          {/* Top bar */}
           <View
             style={{ justifyContent: "space-between", flexDirection: "row" }}
           >
+            {/* Order Number */}
             <Text style={styles.orderText}>
               {this.props.info.bloomlinkOrder}
             </Text>
-            <Text style={[styles.orderText, styles.orderStatusText]}>
+            {/* Order Status */}
+            <Text style={[styles.orderText, orderStatus === "ATTEMPTED" ? styles.orderStatusText : null]}>
               {orderStatus}
             </Text>
           </View>

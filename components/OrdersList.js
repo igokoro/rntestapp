@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Button, AsyncStorage } from "react-native";
 import OrderItem from "./OrderItem";
 import styles from "../styles/styles";
 
@@ -70,6 +70,12 @@ export default class OrdersList extends Component {
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index.toString()}
           style={{ height: "100%" }}
+        />
+
+        <Button
+          title="Logout"
+          onPress={() => { AsyncStorage.removeItem('loginToken')}}
+          color="#5e3987"
         />
       </View>
     );

@@ -35,12 +35,10 @@ export default StyleSheet.create({
   },
   btnTextWhite: {
     marginTop: 5,
-    textAlign: "center",
     color: "white"
   },
   btnTextBlack: {
     marginTop: 5,
-    textAlign: "center",
     color: "black"
   },
   container: {
