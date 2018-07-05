@@ -119,7 +119,8 @@ export default StyleSheet.create({
   orderText: {
     fontSize: 16,
     fontFamily: "Roboto",
-    textAlign: "center"
+    textAlign: "center",
+    color: 'rgb(0, 0, 0)'
   },
   splashImage: {
     flex: 1,
