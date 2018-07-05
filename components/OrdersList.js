@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, Button, AsyncStorage } from "react-native";
 import OrderItem from "./OrderItem";
-import styles from "../styles/styles";
-
 import * as firebase from "firebase";
+import { getCurrentLocation } from "../services/geolocation"
+import { getCurrentDay } from '../services'
 import firebaseConfig from "../config/firebase";
+import styles from "../styles/styles";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -53,10 +54,7 @@ export default class OrdersList extends Component {
   };
 
   render() {
-    const date = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-    const year = new Date().getFullYear();
-    const todaysDate = `${month}-${date}-${year}`;
+    const todaysDate = getCurrentDay();
 
     return (
       <View style={{ flex: 1 }}>

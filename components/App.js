@@ -4,24 +4,13 @@ import { Platform, View, PermissionsAndroid } from "react-native";
 import LoginForm from "./LoginForm";
 import OrdersList from "./OrdersList";
 import WelcomeSplash from "./WelcomeSplash";
+import { getCurrentRouteName } from '../services/navigation'
 import {
   GoogleAnalyticsTracker,
   GoogleAnalyticsSettings,
   GoogleTagManager
 } from "react-native-google-analytics-bridge";
 
-// gets the current screen from navigation state
-function getCurrentRouteName(navigationState) {
-  if (!navigationState) {
-    return null;
-  }
-  const route = navigationState.routes[navigationState.index];
-  // dive into nested navigators
-  if (route.routes) {
-    return getCurrentRouteName(route);
-  }
-  return route.routeName;
-}
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
 

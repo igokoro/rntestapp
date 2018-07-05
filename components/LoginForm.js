@@ -33,6 +33,8 @@ export default class LoginForm extends Component {
       userID: this.state.userID
     });
     AsyncStorage.setItem("loginToken", loginToken);
+    // TODO: Take this out before production
+    this.props.navigation.navigate("App");
   };
 
   retrieveData = async () => {

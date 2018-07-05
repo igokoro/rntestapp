@@ -135,6 +135,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: "Roboto",
     textAlign: "center",
-    color: "rgb(0, 0, 0)"
+    color: "rgb(1, 1, 1)"
   }
 });
