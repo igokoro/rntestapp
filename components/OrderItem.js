@@ -114,7 +114,7 @@ export default class OrderItem extends Component {
     const orderStatus =
       modalStatus === "Confirm" && deliveryStatus === "Attempted"
         ? "ATTEMPTED"
-        : "undelivered";
+        : null;
 
     return (
       // Card Wrapper
