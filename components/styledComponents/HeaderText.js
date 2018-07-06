@@ -16,5 +16,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Roboto",
     fontSize: 22,
+    color: "rgb(0,0,0)"
   },
 });
