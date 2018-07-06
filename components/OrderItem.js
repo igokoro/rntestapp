@@ -6,6 +6,8 @@ import {
   Modal,
   TouchableWithoutFeedback
 } from "react-native";
+import OrderText from "./styledComponents/OrderText";
+import HeaderText from "./styledComponents/HeaderText";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import googleMapsConfig from "../config/googleMaps";
@@ -136,12 +138,12 @@ export default class OrderItem extends Component {
               <View style={styles.modalVisible}>
                 {/* Modal Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
-                  <Text style={styles.text}>
+                  <HeaderText>
                     Mark Order as{" "}
                     <Text style={{ color: "#5e3987" }}>
                       {this.state.deliveryBtnPressed}
                     </Text>
-                  </Text>
+                  </HeaderText>
                 </View>
 
                 {/* Confirm Button */}
@@ -186,11 +188,14 @@ export default class OrderItem extends Component {
             style={{ justifyContent: "space-between", flexDirection: "row" }}
           >
             {/* Order Number */}
-            <Text style={styles.orderText}>
-              {this.props.info.bloomlinkOrder}
-            </Text>
+            <OrderText>{this.props.info.bloomlinkOrder}</OrderText>
             {/* Order Status */}
-            <Text style={[styles.orderText, orderStatus === "ATTEMPTED" ? styles.orderStatusText : null]}>
+            <Text
+              style={[
+                styles.orderText,
+                orderStatus === "ATTEMPTED" ? styles.orderStatusText : null
+              ]}
+            >
               {orderStatus}
             </Text>
           </View>
@@ -198,11 +203,11 @@ export default class OrderItem extends Component {
           {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
           {/* Address information */}
           <View style={styles.container}>
-            <Text style={styles.orderText}>{deliverTo}</Text>
-            <Text style={styles.orderText}>{this.props.info.address1}</Text>
-            <Text style={styles.orderText}>
+            <OrderText>{deliverTo}</OrderText>
+            <OrderText>{this.props.info.address1}</OrderText>
+            <OrderText>
               {this.props.info.city}, {this.props.info.state}
-            </Text>
+            </OrderText>
           </View>
           {/* </TouchableWithoutFeedback> */}
         </View>

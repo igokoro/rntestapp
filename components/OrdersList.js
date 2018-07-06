@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, Button, AsyncStorage } from "react-native";
 import OrderItem from "./OrderItem";
+import HeaderText from './styledComponents/HeaderText';
 import * as firebase from "firebase";
 import { getCurrentLocation } from "../services/geolocation"
 import { getCurrentDay } from '../services'
@@ -59,7 +60,8 @@ export default class OrdersList extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.ordersListHeaderView}>
-          <Text style={styles.headerText}>Your Shops Orders for:</Text>
+          {/* <Text style={styles.headerText}>Your Shops Orders for:</Text> */}
+          <HeaderText>Your Shops Orders for:</HeaderText>
           <Text style={styles.dateText}>{todaysDate}</Text>
         </View>
 
