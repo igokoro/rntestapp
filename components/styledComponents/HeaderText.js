@@ -16,6 +16,5 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Roboto",
     fontSize: 22,
-    fontWeight: "500",
   },
 });
