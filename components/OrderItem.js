@@ -9,6 +9,7 @@ import {
 import OrderText from "./styledComponents/OrderText";
 import HeaderText from "./styledComponents/HeaderText";
 import CancelButton from "./styledComponents/CancelButton";
+import ConfirmButton from "./styledComponents/ConfirmButton";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import googleMapsConfig from "../config/googleMaps";
@@ -148,16 +149,9 @@ export default class OrderItem extends Component {
                 </View>
 
                 {/* Confirm Button */}
-                <TouchableOpacity
-                  style={[styles.btn, styles.deliveredBtn, styles.btnTextWhite]}
-                  onPress={() => {
-                    this.handleConfirm();
-                    // push data to firebase
-                    // this.props.testRef.push(sampleOrder);
-                  }}
-                >
-                  <Text style={[styles.text, { color: "white" }]}>Confirm</Text>
-                </TouchableOpacity>
+                {/* push data to firebase */}
+                {/* this.props.testRef.push(sampleOrder); */}
+                <ConfirmButton handleConfirm={this.handleConfirm} />
 
                 {/* Cancel Button */}
                 <CancelButton handleCancel={this.handleCancel} />
