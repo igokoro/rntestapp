@@ -6,14 +6,19 @@ import {
   Modal,
   TouchableWithoutFeedback
 } from "react-native";
+// styled components
 import OrderText from "./styledComponents/OrderText";
 import HeaderText from "./styledComponents/HeaderText";
 import CancelButton from "./styledComponents/CancelButton";
 import ConfirmButton from "./styledComponents/ConfirmButton";
+import DeliveredButton from "./styledComponents/DeliveredButton";
+import AttemptedButton from "./styledComponents/AttemptedButton";
+// 3rd party libraries
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import googleMapsConfig from "../config/googleMaps";
 import Geocoder from "react-native-geocoding";
+// base styling
 import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
@@ -49,12 +54,12 @@ export default class OrderItem extends Component {
     this.setState({ modalVisible: false });
   };
 
-  _handleDelivered = () => {
+  handleDelivered = () => {
     this.setState({ deliveryBtnPressed: "Delivered" });
     this.openModal();
   };
 
-  _handleAttempted = () => {
+  handleAttempted = () => {
     // return devices location for Firebase storage
     // const test = navigator.geolocation.getCurrentPosition(position =>
     //   console.log(position)
@@ -64,6 +69,9 @@ export default class OrderItem extends Component {
   };
 
   handleConfirm = () => {
+    // push data to firebase
+    // this.props.testRef.push(sampleOrder);
+
     this.setState({ modalBtnPressed: "Confirm" });
     // If the driver confirms a attempted delivery, change order status
     if (
@@ -149,8 +157,6 @@ export default class OrderItem extends Component {
                 </View>
 
                 {/* Confirm Button */}
-                {/* push data to firebase */}
-                {/* this.props.testRef.push(sampleOrder); */}
                 <ConfirmButton handleConfirm={this.handleConfirm} />
 
                 {/* Cancel Button */}
@@ -193,38 +199,11 @@ export default class OrderItem extends Component {
 
         <View style={styles.buttonView}>
           {/* Delivered button */}
-          <TouchableOpacity style={{ width: 175 }}>
-            <Text
-              style={[
-                styles.button,
-                styles.borderBlack,
-                styles.btnTextWhite,
-                styles.deliveredBtn,
-                { fontSize: 18 }
-              ]}
-              onPress={this._handleDelivered}
-            >
-              Delivered
-            </Text>
-          </TouchableOpacity>
+          <DeliveredButton handleDelivered={this.handleDelivered} />
 
           {/* Attemped Btn */}
           <View>
-            {/* disables after use */}
-            <TouchableOpacity style={{ width: 175 }}>
-              <Text
-                style={[
-                  styles.button,
-                  styles.borderBlack,
-                  styles.btnTextBlack,
-                  styles.attemptedBtn,
-                  { fontSize: 18 }
-                ]}
-                onPress={this._handleAttempted}
-              >
-                Attempted
-              </Text>
-            </TouchableOpacity>
+            <AttemptedButton handleAttempted={this.handleAttempted} />
           </View>
         </View>
       </View>
