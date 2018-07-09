@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import OrderText from "./styledComponents/OrderText";
 import HeaderText from "./styledComponents/HeaderText";
+import CancelButton from "./styledComponents/CancelButton";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import googleMapsConfig from "../config/googleMaps";
@@ -159,23 +160,7 @@ export default class OrderItem extends Component {
                 </TouchableOpacity>
 
                 {/* Cancel Button */}
-                <TouchableOpacity
-                  style={[
-                    styles.btn,
-                    styles.attemptedBtn,
-                    styles.btnTextBlack,
-                    {
-                      borderRadius: 4,
-                      borderWidth: 0.5,
-                      borderColor: "black"
-                    }
-                  ]}
-                  onPress={() => {
-                    this.handleCancel();
-                  }}
-                >
-                  <Text style={styles.text}>Cancel</Text>
-                </TouchableOpacity>
+                <CancelButton handleCancel={this.handleCancel} />
               </View>
             </View>
           </Modal>
