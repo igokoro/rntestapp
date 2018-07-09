@@ -1,4 +1,6 @@
+# API keys
 config/*
+
 # OSX
 #
 .DS_Store

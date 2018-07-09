@@ -6,10 +6,19 @@ import {
   Modal,
   TouchableWithoutFeedback
 } from "react-native";
+// styled components
+import OrderText from "./styledComponents/OrderText";
+import HeaderText from "./styledComponents/HeaderText";
+import CancelButton from "./styledComponents/CancelButton";
+import ConfirmButton from "./styledComponents/ConfirmButton";
+import DeliveredButton from "./styledComponents/DeliveredButton";
+import AttemptedButton from "./styledComponents/AttemptedButton";
+// 3rd party libraries
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import openMap from "react-native-open-maps";
 import googleMapsConfig from "../config/googleMaps";
 import Geocoder from "react-native-geocoding";
+// base styling
 import styles from "../styles/styles";
 
 const tracker = new GoogleAnalyticsTracker("UA-121230754-2");
@@ -42,22 +51,15 @@ export default class OrderItem extends Component {
   };
 
   closeModal = () => {
-    console.log(this.state);
-    if (
-      this.state.deliveryBtnPressed === "Attempted" &&
-      this.state.modalBtnPressed !== "Cancel"
-    ) {
-      this.setState({ disabled: true });
-    }
     this.setState({ modalVisible: false });
   };
 
-  _handleDelivered = () => {
+  handleDelivered = () => {
     this.setState({ deliveryBtnPressed: "Delivered" });
     this.openModal();
   };
 
-  _handleAttempted = () => {
+  handleAttempted = () => {
     // return devices location for Firebase storage
     // const test = navigator.geolocation.getCurrentPosition(position =>
     //   console.log(position)
@@ -67,7 +69,11 @@ export default class OrderItem extends Component {
   };
 
   handleConfirm = () => {
+    // push data to firebase
+    // this.props.testRef.push(sampleOrder);
+
     this.setState({ modalBtnPressed: "Confirm" });
+    // If the driver confirms a attempted delivery, change order status
     if (
       this.state.modalBtnPressed === "Confirm" &&
       this.state.deliveryBtnPressed === "Attempted"
@@ -120,7 +126,7 @@ export default class OrderItem extends Component {
     const orderStatus =
       modalStatus === "Confirm" && deliveryStatus === "Attempted"
         ? "ATTEMPTED"
-        : "undelivered";
+        : null;
 
     return (
       // Card Wrapper
@@ -142,44 +148,19 @@ export default class OrderItem extends Component {
               <View style={styles.modalVisible}>
                 {/* Modal Order Information Text */}
                 <View style={{ marginBottom: 10 }}>
-                  <Text style={styles.text}>
+                  <HeaderText>
                     Mark Order as{" "}
                     <Text style={{ color: "#5e3987" }}>
                       {this.state.deliveryBtnPressed}
                     </Text>
-                  </Text>
+                  </HeaderText>
                 </View>
 
                 {/* Confirm Button */}
-                <TouchableOpacity
-                  style={[styles.btn, styles.deliveredBtn, styles.btnTextWhite]}
-                  onPress={() => {
-                    this.handleConfirm();
-                    // push data to firebase
-                    // this.props.testRef.push(sampleOrder);
-                  }}
-                >
-                  <Text style={[styles.text, { color: "white" }]}>Confirm</Text>
-                </TouchableOpacity>
+                <ConfirmButton handleConfirm={this.handleConfirm} />
 
                 {/* Cancel Button */}
-                <TouchableOpacity
-                  style={[
-                    styles.btn,
-                    styles.attemptedBtn,
-                    styles.btnTextBlack,
-                    {
-                      borderRadius: 4,
-                      borderWidth: 0.5,
-                      borderColor: "black"
-                    }
-                  ]}
-                  onPress={() => {
-                    this.handleCancel();
-                  }}
-                >
-                  <Text style={styles.text}>Cancel</Text>
-                </TouchableOpacity>
+                <CancelButton handleCancel={this.handleCancel} />
               </View>
             </View>
           </Modal>
@@ -187,13 +168,19 @@ export default class OrderItem extends Component {
 
         {/* Order Information */}
         <View>
+          {/* Top bar */}
           <View
             style={{ justifyContent: "space-between", flexDirection: "row" }}
           >
-            <Text style={styles.orderText}>
-              {this.props.info.bloomlinkOrder}
-            </Text>
-            <Text style={[styles.orderText, styles.orderStatusText]}>
+            {/* Order Number */}
+            <OrderText>{this.props.info.bloomlinkOrder}</OrderText>
+            {/* Order Status */}
+            <Text
+              style={[
+                styles.orderText,
+                orderStatus === "ATTEMPTED" ? styles.orderStatusText : null
+              ]}
+            >
               {orderStatus}
             </Text>
           </View>
@@ -201,49 +188,22 @@ export default class OrderItem extends Component {
           {/* <TouchableWithoutFeedback onLongPress={() => this._goToAddress()}> */}
           {/* Address information */}
           <View style={styles.container}>
-            <Text style={styles.orderText}>{deliverTo}</Text>
-            <Text style={styles.orderText}>{this.props.info.address1}</Text>
-            <Text style={styles.orderText}>
+            <OrderText>{deliverTo}</OrderText>
+            <OrderText>{this.props.info.address1}</OrderText>
+            <OrderText>
               {this.props.info.city}, {this.props.info.state}
-            </Text>
+            </OrderText>
           </View>
           {/* </TouchableWithoutFeedback> */}
         </View>
 
         <View style={styles.buttonView}>
           {/* Delivered button */}
-          <TouchableOpacity style={{ width: 175 }}>
-            <Text
-              style={[
-                styles.button,
-                styles.borderBlack,
-                styles.btnTextWhite,
-                styles.deliveredBtn,
-                { fontSize: 18 }
-              ]}
-              onPress={this._handleDelivered}
-            >
-              Delivered
-            </Text>
-          </TouchableOpacity>
+          <DeliveredButton handleDelivered={this.handleDelivered} />
 
           {/* Attemped Btn */}
           <View>
-            {/* disables after use */}
-            <TouchableOpacity style={{ width: 175 }}>
-              <Text
-                style={[
-                  styles.button,
-                  styles.borderBlack,
-                  styles.btnTextBlack,
-                  styles.attemptedBtn,
-                  { fontSize: 18 }
-                ]}
-                onPress={this._handleAttempted}
-              >
-                Attempted
-              </Text>
-            </TouchableOpacity>
+            <AttemptedButton handleAttempted={this.handleAttempted} />
           </View>
         </View>
       </View>

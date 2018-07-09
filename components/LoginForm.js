@@ -22,7 +22,7 @@ export default class LoginForm extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.retrieveData();
   }
 
@@ -32,8 +32,9 @@ export default class LoginForm extends Component {
       storePass: this.state.storePass,
       userID: this.state.userID
     });
-    console.log("hello");
     AsyncStorage.setItem("loginToken", loginToken);
+    // TODO: Take this out before production
+    this.props.navigation.navigate("App");
   };
 
   retrieveData = async () => {

@@ -2,9 +2,6 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  attemptedBtn: {
-    backgroundColor: "white"
-  },
   borderBlack: {
     borderRadius: 4,
     borderWidth: 0.5,
@@ -24,25 +21,6 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center"
   },
-  btn: {
-    paddingHorizontal: 80,
-    height: 50
-  },
-  button: {
-    textAlign: "center",
-    padding: 10,
-    margin: 10
-  },
-  btnTextWhite: {
-    marginTop: 5,
-    textAlign: "center",
-    color: "white"
-  },
-  btnTextBlack: {
-    marginTop: 5,
-    textAlign: "center",
-    color: "black"
-  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -58,12 +36,6 @@ export default StyleSheet.create({
   dateText: {
     fontSize: 22,
     color: "#5e3987"
-  },
-  deliveredBtn: {
-    backgroundColor: "#5e3987"
-  },
-  headerText: {
-    fontSize: 22
   },
   loginBtnView: {
     marginTop: 20,
@@ -121,7 +93,8 @@ export default StyleSheet.create({
   orderText: {
     fontSize: 16,
     fontFamily: "Roboto",
-    textAlign: "center"
+    textAlign: "center",
+    color: 'rgb(0, 0, 0)'
   },
   splashImage: {
     flex: 1,
@@ -137,6 +110,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: "Roboto",
     textAlign: "center",
-    color: "rgb(0, 0, 0)"
+    color: "rgb(1, 1, 1)"
   }
 });

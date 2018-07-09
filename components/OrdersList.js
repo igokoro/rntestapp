@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Button, AsyncStorage } from "react-native";
 import OrderItem from "./OrderItem";
-import styles from "../styles/styles";
-
+import HeaderText from './styledComponents/HeaderText';
 import * as firebase from "firebase";
+import { getCurrentLocation } from "../services/geolocation"
+import { getCurrentDay } from '../services'
 import firebaseConfig from "../config/firebase";
+import styles from "../styles/styles";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -53,15 +55,13 @@ export default class OrdersList extends Component {
   };
 
   render() {
-    const date = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-    const year = new Date().getFullYear();
-    const todaysDate = `${month}-${date}-${year}`;
+    const todaysDate = getCurrentDay();
 
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.ordersListHeaderView}>
-          <Text style={styles.headerText}>Your Shops Orders for:</Text>
+          {/* <Text style={styles.headerText}>Your Shops Orders for:</Text> */}
+          <HeaderText>Your Shops Orders for:</HeaderText>
           <Text style={styles.dateText}>{todaysDate}</Text>
         </View>
 
@@ -70,6 +70,12 @@ export default class OrdersList extends Component {
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index.toString()}
           style={{ height: "100%" }}
+        />
+
+        <Button
+          title="Logout"
+          onPress={() => { AsyncStorage.removeItem('loginToken')}}
+          color="#5e3987"
         />
       </View>
     );
