@@ -175,6 +175,7 @@ export default class OrderItem extends Component {
             {/* Order Number */}
             <OrderText>{this.props.info.bloomlinkOrder}</OrderText>
             {/* Order Status */}
+            {/* if marked as attempted border changes to orange */}
             <Text
               style={[
                 styles.orderText,
