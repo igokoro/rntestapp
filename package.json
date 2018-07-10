@@ -13,6 +13,7 @@
     "react-native-geocoding": "^0.3.0",
     "react-native-google-analytics-bridge": "^5.7.1",
     "react-native-open-maps": "^0.2.2",
+    "react-native-radar": "^1.0.17",
     "react-navigation": "^2.4.1",
     "ws": "^5.2.0"
   },
