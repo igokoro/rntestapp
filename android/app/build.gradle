@@ -135,15 +135,19 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-v4:27.1.1'
+        force 'com.android.support:appcompat-v7:27.1.1'
+    }
+}
+
 dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "com.android.support:support-v4:27.1.1"
     implementation 'com.android.support:support-v13:27.1.1'
     implementation "com.android.support:appcompat-v7:27.1.1"
-    implementation(project(':react-native-firebase')) {
-        transitive = false
-    }
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation(project(':react-native-firebase'))
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-radar')
     implementation project(':react-native-google-analytics-bridge')

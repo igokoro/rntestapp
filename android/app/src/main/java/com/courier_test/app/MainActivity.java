@@ -1,4 +1,4 @@
-package com.courier_test_app;
+package com.courier_test.app;
 
 import com.facebook.react.ReactActivity;
 
